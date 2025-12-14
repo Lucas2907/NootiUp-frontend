@@ -1,1 +1,0 @@
-# NootiUp-frontend
