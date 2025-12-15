@@ -1,7 +1,8 @@
+import Header from "../Header/Header"
 function App() {
   return (
     <>
-      Olá
+      <Header text="Register" />
     </>
   )
 }
