@@ -1,10 +1,18 @@
 .redirect-button {
-  font-family: "Inter", sans-serif;
   font-size: 1.5rem;
   border-radius: 3.1rem;
   padding: 1.2rem 2.1rem;
   color: #736eed;
-  background-color: #fff;
+  background-color: transparent;
   border: 2px solid #736eed;
-  min-width: 159px;
+  min-width: 9.9rem;
+}
+
+.redirect-button:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.redirect-button:active {
+  opacity: 70%;
 }

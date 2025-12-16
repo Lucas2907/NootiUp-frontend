@@ -1,6 +1,9 @@
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.5rem;
+  box-sizing: border-box;
   border-bottom: 2px solid #cfcfcf;
 }
