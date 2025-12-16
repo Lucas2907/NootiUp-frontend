@@ -1,0 +1,126 @@
+.main {
+  padding: 2.2rem 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__title {
+  margin: 0;
+  font-size: 3rem;
+  color: #736eed;
+}
+
+.main__description {
+  font-size: 1.3rem;
+  margin: 1rem 0 3rem;
+  max-width: 26.4rem;
+  text-align: center;
+  color: #585858;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #736eed;
+  font-size: 1.1rem;
+}
+
+.form__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form__field {
+  min-width: 30rem;
+  display: flex;
+  border: 2px solid rgb(88, 88, 88, 0.5);
+  border-radius: 50px;
+  box-sizing: border-box;
+  padding: 1rem 1.8rem;
+}
+
+.form__input {
+  width: 100%;
+  display: flex;
+  border: none;
+  background-color: transparent;
+  font-size: 1.3rem;
+  color: #585858;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.form__input::placeholder {
+  color: #736eed;
+}
+
+.form__icon {
+  max-width: 1.8rem;
+}
+
+.form__icon:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.form__icon:active {
+  opacity: 70%;
+}
+
+.form__link-password {
+  padding-right: 1rem;
+  margin: 0;
+  text-align: right;
+}
+
+.form__link-password:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.form__link-password:active {
+  opacity: 75%;
+}
+
+.form__submit {
+  color: #fff;
+  background-color: #736eed;
+  padding: 1.3rem 0;
+  border: none;
+  border-radius: 3.1rem;
+  font-size: 1.5rem;
+}
+
+.form__submit:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.form__submit:active {
+  opacity: 70%;
+}
+
+.main__link {
+  font-size: 1.1rem;
+  color: #5b5959;
+  margin-top: 1rem;
+}
+
+.main__link:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.main__link:active {
+  opacity: 70%;
+}
+
+.main__link_redirect {
+  color: #736eed;
+}
