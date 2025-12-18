@@ -5,15 +5,14 @@ import cssIcon from "../../assets/images/css-icon.png"
 
 //import components
 import CardsModule from "../CardsModule/CardsModule"
+import InfoUser from "../InfoUser/InfoUser"
 
 function MyProgress() {
     return (
         <div className="my-progress">
             <h1 className="my-progress__title">Meu Progresso</h1>
             <div className="my-progress__profile">
-                <img className="my-progress__profile-image" src={profileImage} alt="example perfil image" />
-                <h4 className="my-progress__profile-title">Lucas</h4>
-                <p className="my-progress__profile-about">Web Developer</p>
+                <InfoUser profileImage={profileImage} name="Lucas" about="Web Developer"></InfoUser>
                 <div className="my-progress__profile-stats">
                     <div className="my-progress__profile-stats-item ">
                         <p className="my-progress__profile-stats-number">2</p>
