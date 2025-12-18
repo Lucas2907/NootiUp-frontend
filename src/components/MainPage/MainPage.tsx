@@ -1,10 +1,8 @@
 //generic imports
-
 import htmlIcon from "../../assets/images/html-icon.png"
 import cssIcon from "../../assets/images/css-icon.png"
 
 //import components
-
 import CardsModule from "../CardsModule/CardsModule"
 
 function MainPage() {
