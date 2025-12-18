@@ -1,0 +1,88 @@
+.my-progress {
+  padding: 2.2rem 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-progress__title {
+  margin: 0;
+  font-size: 2.5rem;
+  padding-bottom: 0.8rem;
+}
+
+.my-progress__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.2rem 3.1rem;
+  box-sizing: border-box;
+  width: 43.2rem;
+  background-color: rgba(181, 181, 181, 0.1);
+  border-radius: 0.6rem;
+}
+
+.my-progress__profile-image {
+  max-width: 12.6rem;
+  height: 12.6rem;
+  border-radius: 250px;
+}
+
+.my-progress__profile-title {
+  margin: 0;
+  padding: 1rem 0 0 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.my-progress__profile-about {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #736eed;
+  font-weight: 400;
+  padding-top: 0.5rem;
+}
+
+.my-progress__profile-stats {
+  display: flex;
+  padding: 0.9rem 0 0;
+  gap: 2.1rem;
+}
+
+.my-progress__profile-stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.my-progress__profile-stats-number {
+  margin: 0;
+  font-size: 2.1rem;
+  color: #736eed;
+  font-weight: 600;
+}
+
+.my-progress__profile-stats-text {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.my-progress__recent {
+  margin: 0;
+  padding: 3.5rem 0 0.6rem 0;
+  width: 100%;
+  font-size: 1.8rem;
+}
+.my-progress__recent-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.8rem;
+  background-color: rgba(181, 181, 181, 0.1);
+  border-radius: 0.6rem;
+  padding: 2.2rem 3.1rem;
+  box-sizing: border-box;
+}
