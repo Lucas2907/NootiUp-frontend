@@ -1,6 +1,11 @@
+//generic imports
+
 import htmlIcon from "../../assets/images/html-icon.png"
 import cssIcon from "../../assets/images/css-icon.png"
-import threeDots from "../../assets/images/three-dots.png"
+
+//import components
+
+import CardsModule from "../CardsModule/CardsModule"
 
 function MainPage() {
     return (
@@ -12,29 +17,8 @@ function MainPage() {
                     <h3 className="modules__texts-title">Programação</h3>
                     <p className="modules__texts-text">view all</p>
                 </div>
-                <div className="modules__cards">
-                    <img src={htmlIcon} alt="html icon example" className="modules__cards-image" />
-                    <div className="modules__cards-about">
-                        <h2 className="cards-about__title">HTML</h2>
-                        <ul className="cards-about__list">
-                            <li className="about__list-lesson">2 lições</li>
-                            <li className="about__list-tasks">9 exercícios</li>
-                        </ul>
-                    </div>
-                    <img src={threeDots} alt="" className="modules__cards-three-dots" />
-                </div>
-                <div className="modules__cards">
-                    <img src={cssIcon} alt="css icon example" className="modules__cards-image" />
-                    <div className="modules__cards-about">
-                        <h2 className="cards-about__title">CSS</h2>
-                        <ul className="cards-about__list">
-                            <li className="about__list-lesson">4 lições</li>
-                            <li className="about__list-tasks">5 exercícios</li>
-                        </ul>
-                    </div>
-                    <img src={threeDots} alt="" className="modules__cards-three-dots" />
-                </div>
-
+                <CardsModule imageModule={htmlIcon} name="HTML" lessons={2} tasks={9} />
+                <CardsModule imageModule={cssIcon} name="CSS" lessons={4} tasks={5} />
             </div>
         </div>
     )

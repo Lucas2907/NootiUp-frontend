@@ -29,7 +29,7 @@
 }
 
 .modules__texts {
-  padding: 0 0.5rem 0.9rem;
+  padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,53 +46,4 @@
   font-size: 1.3rem;
 
   margin: 0;
-}
-
-.modules__cards {
-  display: flex;
-  padding: 1.2rem;
-  background-color: #fff;
-  box-sizing: border-box;
-  border: 0;
-  box-shadow: 0.5rem 0.5rem 0 #000;
-  border-radius: 1rem;
-}
-
-.modules__cards-image {
-  width: 4.5rem;
-  max-height: 4.5rem;
-  padding-top: 0.5rem;
-}
-
-.modules__cards-about {
-  margin: 0 auto 0 0.3rem;
-}
-
-.cards-about__title {
-  margin: 0;
-  font-size: 1.8rem;
-}
-
-.cards-about__list {
-  padding: 0.3rem 0 0 1rem;
-  margin: 0;
-}
-
-.about__list-lesson {
-  margin: 0;
-  color: #736eed;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.about__list-tasks {
-  margin: 0;
-  color: #736eed;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.modules__cards-three-dots {
-  width: 1.8rem;
-  max-height: 1.8rem;
 }
