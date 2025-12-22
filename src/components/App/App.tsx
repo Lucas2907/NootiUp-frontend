@@ -1,15 +1,25 @@
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import Main from "../Main/Main"
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   return (
     <div className="page">
-      <Header text="Register" />
+
       <Routes>
-        <Route path="/signin" element={<Main route="signin" />} />
-        <Route path="/signup" element={<Main route="signup" />} />
+        <Route path="/signin" element={
+          <>
+            <Header route="signin" />
+            <Main route="signin" />
+          </>
+        } />
+        <Route path="/signup" element={
+          <>
+            <Header route="signup" />
+            <Main route="signup" />
+          </>
+        } />
       </Routes>
       <Footer />
     </div>
