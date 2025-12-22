@@ -1,0 +1,91 @@
+.my-profile {
+  display: grid;
+  grid-template-areas:
+    "user . email"
+    ". data sair";
+  width: 95%;
+  background-color: rgba(181, 181, 181, 0.2);
+  margin: 1rem 0 0 0;
+  padding: 2rem 4.3rem 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-profile__user-image {
+  max-width: 12.6rem;
+  height: 12.6rem;
+  border-radius: 250px;
+  grid-area: user;
+}
+
+.my-profile__user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.my-profile__user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.my-profile__user-info-name {
+  margin: 0;
+  font-size: 3.1rem;
+}
+
+.my-profile__user-about {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.my-profile__user {
+  grid-area: user;
+}
+
+.my-profile__user-info {
+  display: flex;
+}
+
+.my-profile__user-info-image {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.my-profile__email {
+  grid-area: email;
+  display: flex;
+  font-size: 1.3rem;
+  gap: 0.4rem;
+  padding-bottom: 1.9rem;
+}
+
+.my-profile__email-name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.my-profile__email-text {
+  margin: 0;
+}
+
+.my-profile-text {
+  grid-area: data;
+  font-size: 1.4rem;
+  color: #000;
+  opacity: 61%;
+}
+
+.my-profile-exit {
+  grid-area: sair;
+  font-size: 1.5rem;
+  border-radius: 3.1rem;
+  padding: 1.2rem 2.1rem;
+  color: #fff;
+  background-color: #736eed;
+  border: none;
+  max-width: 100%;
+}
