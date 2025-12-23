@@ -1,7 +1,7 @@
 //generic import
 import editProfile from "../../assets/images/edit-profile.png"
 import profileImage from "../../assets/images/profile-example.jpg"
-
+import { Link } from "react-router-dom"
 //import component
 
 
@@ -23,8 +23,7 @@ function MyProfile() {
                 <p className="my-profile__email-text"> lucas@gmail.com</p>
             </div>
             <p className="my-profile-text">Entrou em 18/01/2025</p>
-
-            <button className="my-profile-exit">Sair</button>
+            <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile-exit">Sair</button></Link >
         </div>
     )
 }

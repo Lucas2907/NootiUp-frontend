@@ -80,12 +80,21 @@
 }
 
 .my-profile-exit {
-  grid-area: sair;
   font-size: 1.5rem;
   border-radius: 3.1rem;
   padding: 1.2rem 2.1rem;
   color: #fff;
   background-color: #736eed;
   border: none;
-  max-width: 100%;
+  width: 100%;
+}
+
+.my-profile-exit:hover {
+  cursor: pointer;
+}
+
+.my-profile-exit_link {
+  grid-area: sair;
+  display: flex;
+  justify-content: center;
 }

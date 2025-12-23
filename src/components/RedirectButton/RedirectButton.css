@@ -6,6 +6,10 @@
   background-color: transparent;
   border: 2px solid #736eed;
   min-width: 9.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
 }
 
 .redirect-button:hover {
@@ -15,4 +19,13 @@
 
 .redirect-button:active {
   opacity: 70%;
+}
+
+.redirect-button__button {
+  margin: 0;
+}
+
+.redirect-button__image {
+  width: 1.5rem;
+  height: 1.5rem;
 }
