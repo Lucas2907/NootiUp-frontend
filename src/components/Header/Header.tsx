@@ -1,33 +1,38 @@
 import Logo from "../Logo/Logo"
 import RedirectButton from "../RedirectButton/RedirectButton"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
+function Header() {
+    const { pathname } = useLocation()
 
-type HeaderProps = {
-    route: "signin" | "signup"
-}
+    const isSignin = pathname === "/signin"
+    const isSignup = pathname === "/signup"
 
+    if (isSignin || isSignup) {
+        return (
+            <header className="header">
+                <Logo />
+                {isSignin && (
+                    <Link to={"/signup"} className="app-link"><RedirectButton text={"Registrar"} isLogged={false} /></Link>
+                )
+                }
+                {isSignup && (
+                    <Link to={"/signin"} className="app-link"><RedirectButton text={"Entrar"} isLogged={false} /></Link>
+                )
+                }
+            </header >
+        )
 
-function Header({ route }: HeaderProps) {
-
-    const isSignin = route === "signin"
-
+    }
     return (
-        <div className="header">
+        <header className="header">
             <Logo />
-            {isSignin ? (
-                <>
-                    <Link className="app-link" to={"/signup"}><RedirectButton text={"Registrar"} /></Link>
-                </>
-            ) : (
-                <>
-                    <Link className="app-link" to={"/signin"}><RedirectButton text={"Entrar"} /></Link>
-                </>
-            )}
-
-
-        </div>
-
+            <nav className="header__list">
+                <Link className="app-link" to={"/"}><a className="header__list-item">Página Inicial</a></Link>
+                <Link className="app-link" to={"/my-progress"}><a className="header__list-item">Meu Progresso</a></Link>
+                <Link to={"/my-profile"} className="app-link"><RedirectButton text={"Lucas"} isLogged={true} /></Link>
+            </nav>
+        </header>
     )
 }
 

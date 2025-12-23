@@ -2,27 +2,22 @@ import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import Main from "../Main/Main"
 import { Routes, Route } from "react-router-dom"
+import MainPage from "../MainPage/MainPage"
+import MyProgress from "../MyProgress/MyProgress"
+import Layout from "../Layout/Layout"
+import MyProfile from "../MyProfile/MyProfile"
 
 function App() {
   return (
-    <div className="page">
-
-      <Routes>
-        <Route path="/signin" element={
-          <>
-            <Header route="signin" />
-            <Main route="signin" />
-          </>
-        } />
-        <Route path="/signup" element={
-          <>
-            <Header route="signup" />
-            <Main route="signup" />
-          </>
-        } />
-      </Routes>
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/signin" element={<Main route="signin" />} />
+        <Route path="/signup" element={<Main route="signup" />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/my-progress" element={<MyProgress />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+      </Route>
+    </Routes>
   )
 }
 
