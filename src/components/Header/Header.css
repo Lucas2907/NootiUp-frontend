@@ -25,3 +25,7 @@
   cursor: pointer;
   opacity: 70%;
 }
+
+.header__list-item_active {
+  opacity: 100%;
+}
