@@ -1,9 +1,10 @@
 import Logo from "../Logo/Logo"
 import RedirectButton from "../RedirectButton/RedirectButton"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, NavLink } from "react-router-dom"
 
 function Header() {
     const { pathname } = useLocation()
+    const customClassName = ({ isActive }: { isActive: boolean }) => "header__list-item app-link " + (isActive ? "header__list-item_active " : "")
 
     const isSignin = pathname === "/signin"
     const isSignup = pathname === "/signup"
@@ -28,11 +29,11 @@ function Header() {
         <header className="header">
             <Logo />
             <nav className="header__list">
-                <Link className="app-link" to={"/"}><a className="header__list-item">Página Inicial</a></Link>
-                <Link className="app-link" to={"/my-progress"}><a className="header__list-item">Meu Progresso</a></Link>
-                <Link to={"/my-profile"} className="app-link"><RedirectButton text={"Lucas"} isLogged={true} /></Link>
-            </nav>
-        </header>
+                <NavLink className={customClassName} to={"/"}>Página Inicial</NavLink>
+                <NavLink className={customClassName} to={"/my-progress"}>Meu Progresso</NavLink>
+                <NavLink to={"/my-profile"} className="app-link"><RedirectButton text={"Lucas"} isLogged={true} /></NavLink>
+            </nav >
+        </header >
     )
 }
 
