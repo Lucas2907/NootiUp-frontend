@@ -15,8 +15,11 @@ function MainPage() {
                     <h3 className="modules__texts-title">Programação</h3>
                     <p className="modules__texts-text">view all</p>
                 </div>
-                <CardsModule imageModule={htmlIcon} name="HTML" lessons={2} tasks={9} />
-                <CardsModule imageModule={cssIcon} name="CSS" lessons={4} tasks={5} />
+                <div className="modules__cards">
+                    <CardsModule imageModule={htmlIcon} name="HTML" lessons={2} tasks={9} />
+                    <CardsModule imageModule={cssIcon} name="CSS" lessons={4} tasks={5} />
+                    <CardsModule imageModule={cssIcon} name="Math" lessons={2} tasks={8} />
+                </div>
             </div>
         </div>
     )
