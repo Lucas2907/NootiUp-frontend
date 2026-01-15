@@ -2,6 +2,8 @@
 import editProfile from "../../assets/images/edit-profile.png"
 import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 //import component
 
 
@@ -23,7 +25,11 @@ function MyProfile() {
                 <p className="my-profile__email-text"> lucas@gmail.com</p>
             </div>
             <p className="my-profile-text">Entrou em 18/01/2025</p>
-            <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile-exit">Sair</button></Link >
+            <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile__button my-profile-exit">Sair</button></Link >
+            <button className="my-profile__button my-profile-addGit">
+                <FontAwesomeIcon className="my-profile-addGit__icon" icon={faGithub} />
+                <p className="my-profile-addGit__text">Entrar com GitHub</p>
+            </button>
         </div>
     )
 }

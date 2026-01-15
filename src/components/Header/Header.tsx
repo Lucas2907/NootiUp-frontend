@@ -20,7 +20,7 @@ function Header() {
     }
 
     useEffect(() => {
-        getNameUser("Luca").then((res) => {
+        getNameUser("Lucas2907").then((res) => {
             if (res === null) {
                 setNameUser("Profile")
             } else {
