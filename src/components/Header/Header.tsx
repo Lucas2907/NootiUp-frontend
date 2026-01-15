@@ -1,13 +1,34 @@
+import { useEffect, useState } from "react"
 import Logo from "../Logo/Logo"
 import RedirectButton from "../RedirectButton/RedirectButton"
 import { Link, useLocation, NavLink } from "react-router-dom"
+import api from "../../utils/GitHubApi"
 
 function Header() {
+    const [nameUser, setNameUser] = useState("")
     const { pathname } = useLocation()
     const customClassName = ({ isActive }: { isActive: boolean }) => "header__list-item app-link " + (isActive ? "header__list-item_active " : "")
 
     const isSignin = pathname === "/signin"
     const isSignup = pathname === "/signup"
+
+
+    async function getNameUser(name: string) {
+        const res = await api.getName(name)
+
+        return res
+    }
+
+    useEffect(() => {
+        getNameUser("Luca").then((res) => {
+            if (res === null) {
+                setNameUser("Profile")
+            } else {
+                setNameUser(res)
+            }
+        })
+    }, [nameUser]);
+
 
     if (isSignin || isSignup) {
         return (
@@ -31,7 +52,7 @@ function Header() {
             <nav className="header__list">
                 <NavLink className={customClassName} to={"/"}>Página Inicial</NavLink>
                 <NavLink className={customClassName} to={"/my-progress"}>Meu Progresso</NavLink>
-                <NavLink to={"/my-profile"} className="app-link"><RedirectButton text={"Lucas"} isLogged={true} /></NavLink>
+                <NavLink to={"/my-profile"} className="app-link"><RedirectButton text={nameUser} isLogged={true} /></NavLink>
             </nav >
         </header >
     )
