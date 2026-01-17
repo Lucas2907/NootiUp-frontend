@@ -4,10 +4,21 @@ import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-//import component
+import PopupMyProfile from "../Popup/PopupMyProfile";
+import { useState } from "react";
 
 
 function MyProfile() {
+    const [isOpened, setIsOpened] = useState<boolean>(false);
+
+    const openPopup = () => {
+        setIsOpened(true);
+    }
+
+    const closePopup = () => {
+        setIsOpened(false);
+    }
+
     return (
         <div className="my-profile">
             <div className="my-profile__user-info">
@@ -26,11 +37,15 @@ function MyProfile() {
             </div>
             <p className="my-profile-text">Entrou em 18/01/2025</p>
             <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile__button my-profile-exit">Sair</button></Link >
-            <button className="my-profile__button my-profile-addGit">
+            <button className="my-profile__button my-profile-addGit" onClick={openPopup}>
                 <FontAwesomeIcon className="my-profile-addGit__icon" icon={faGithub} />
                 <p className="my-profile-addGit__text">Entrar com GitHub</p>
             </button>
-        </div>
+            <PopupMyProfile
+                isOpened={isOpened} onClose={closePopup}
+            />
+
+        </div >
     )
 }
 
