@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/my-progress" element={<MyProgress />} />
         <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/github-info" element>{<GitHubInfo />}</Route>
       </Route>
     </Routes>
   )
