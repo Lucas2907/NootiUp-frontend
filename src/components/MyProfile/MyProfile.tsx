@@ -25,7 +25,7 @@ function MyProfile() {
                 <img className="my-profile__user-image" src={profileImage} alt="" />
                 <div className="my-profile__user-data">
                     <div className="my-profile__user-info">
-                        <h2 className="my-profile__user-info-name">Lucas</h2>
+                        <h2 className="my-profile__user-info-name">User</h2>
                         <img className="my-profile__user-info-image" src={editProfile} alt="a profile edit icon" />
                     </div>
                     <p className="my-profile__user-about">Web Developer</p>
@@ -39,7 +39,7 @@ function MyProfile() {
             <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile__button my-profile-exit">Sair</button></Link >
             <button className="my-profile__button my-profile-addGit" onClick={openPopup}>
                 <FontAwesomeIcon className="my-profile-addGit__icon" icon={faGithub} />
-                <p className="my-profile-addGit__text">Entrar com GitHub</p>
+                <p className="my-profile-addGit__text">Inserir user GitHub</p>
             </button>
             <PopupMyProfile
                 isOpened={isOpened} onClose={closePopup}
