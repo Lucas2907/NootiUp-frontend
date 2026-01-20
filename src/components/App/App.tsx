@@ -5,6 +5,7 @@ import MyProgress from "../MyProgress/MyProgress"
 import Layout from "../Layout/Layout"
 import MyProfile from "../MyProfile/MyProfile"
 import Preloader from "../Preloader/Preloader"
+import GitHubInfo from "../GitHubInfo/GitHubInfo"
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/my-progress" element={<MyProgress />} />
         <Route path="/my-profile" element={<MyProfile />} />
-        <Route path="/github-info" element>{<GitHubInfo />}</Route>
+        <Route path="/github-info" element={<GitHubInfo />} />
       </Route>
     </Routes>
   )
