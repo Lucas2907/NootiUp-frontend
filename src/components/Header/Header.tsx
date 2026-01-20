@@ -52,6 +52,7 @@ function Header() {
             <nav className="header__list">
                 <NavLink className={customClassName} to={"/"}>Página Inicial</NavLink>
                 <NavLink className={customClassName} to={"/my-progress"}>Meu Progresso</NavLink>
+                <NavLink className={customClassName} to={"/github-info"}>GitHub Info</NavLink>
                 <NavLink to={"/my-profile"} className="app-link"><RedirectButton text={nameUser} isLogged={true} /></NavLink>
             </nav >
         </header >

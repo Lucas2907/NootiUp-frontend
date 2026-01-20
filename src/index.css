@@ -10,8 +10,7 @@
 @import url(./components/Navigation/Navigation.css);
 @import url(./components/Preloader/Preloader.css);
 @import url(./components/RedirectButton/RedirectButton.css);
-@import url(./components/Signin/Signin.css);
-@import url(./components/Signup/Signup.css);
 @import url(./components/MainPage/MainPage.css);
 @import url(./components//Layout/Layout.css);
 @import url(./components/Popup/PopupMyProfile.css);
+@import url(./components/GitHubInfo/GitHubInfo.css);
