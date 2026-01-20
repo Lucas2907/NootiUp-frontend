@@ -8,7 +8,7 @@ import CardsModule from "../CardsModule/CardsModule"
 function MainPage() {
     return (
         <div className="main-page">
-            <p className="main-page__presentation">Hi Lucas</p>
+            <p className="main-page__presentation">Hi User</p>
             <h1 className="main-page__title">Escolha um Módulo</h1>
             <div className="modules">
                 <div className="modules__texts">

@@ -7,7 +7,7 @@ import infoIcon from "../../assets/images/info.png"
 function GitHubInfo() {
     return (
         <div className="github-info">
-            <h1 className="github-info__title">Informações da sua conta</h1>
+            <h1 className="github-info__title">Informações da sua conta GitHub</h1>
 
             <div className="github-info__cards">
                 <div className="github-info__card github-info__card--basic">
