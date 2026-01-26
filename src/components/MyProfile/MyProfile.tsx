@@ -8,8 +8,12 @@ import PopupMyProfile from "../Popup/PopupMyProfile";
 import { useState } from "react";
 
 
-function MyProfile() {
+function MyProfile({ onSendGitName }: { onSendGitName: (name: string) => void }) {
     const [isOpened, setIsOpened] = useState<boolean>(false);
+
+    const handleName = (name: string) => {
+        onSendGitName(name);
+    }
 
     const openPopup = () => {
         setIsOpened(true);
@@ -42,7 +46,7 @@ function MyProfile() {
                 <p className="my-profile-addGit__text">Inserir user GitHub</p>
             </button>
             <PopupMyProfile
-                isOpened={isOpened} onClose={closePopup}
+                isOpened={isOpened} onClose={closePopup} onSubmit={handleName}
             />
 
         </div >
@@ -50,3 +54,5 @@ function MyProfile() {
 }
 
 export default MyProfile
+
+

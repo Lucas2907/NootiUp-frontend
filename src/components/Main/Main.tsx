@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import hidePassword from "../../assets/images/Hide-password.png";
+import hidePassword from "../../assets/images/hide-password.png"
 
 
 type MainProps = {

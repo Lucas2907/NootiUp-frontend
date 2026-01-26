@@ -1,24 +1,22 @@
 class GitHubApi {
   constructor() { }
 
-  _processResponse(res: Response) {
-    if (res.ok) {
-      return res.json().then((data) => {
-        if (data.data) {
-          return data.data;
-        }
-        return data;
-      });
-    }
-    return Promise.reject(`Erro no${res.status}`);
+  async getInfo(info: string) {
+    const res = await fetch(`https://api.github.com/users/${info}`)
+      .then((res) => res.json())
+      .then((data) => {
+        return data
+      })
+    return res
   }
 
-  async getName(name: string) {
-    const res = await fetch(`https://api.github.com/users/${name}`).then((res => res.json())).then((data) => { return data })
-    return res.name
+  async getAvatar(avatar: string) {
+    const res = await this.getInfo(avatar)
+    return res.message ? console.log("Nao existe") : res.avatar_url
+
   }
+
 }
+const apiGit = new GitHubApi()
 
-const api = new GitHubApi()
-
-export default api;
+export default apiGit;
