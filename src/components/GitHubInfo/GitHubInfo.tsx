@@ -8,21 +8,33 @@ import { useState, useEffect } from "react"
 function GitHubInfo({ onData }: { onData: string }) {
 
     const [userAvatar, setUserAvatar] = useState<string>("")
+    const [nameUser, setNameUser] = useState<string>("")
 
 
 
     useEffect(() => {
-        async function loadUserAvatar() {
-            const name = await api.getAvatar(onData)
-            if (name == undefined) {
+        async function loadUserInfo() {
+            const avatar = await api.getAvatar(onData)
+            if (avatar == undefined) {
                 setUserAvatar("https://i.pinimg.com/736x/e8/c7/03/e8c703dd73d67cd8de09dfd4e839c99c.jpg")
             }
             else {
-                setUserAvatar(name)
+                setUserAvatar(avatar)
             }
+            const name = await api.getName(onData)
+            if (name == undefined) {
+                setNameUser("Not Found")
+            }
+            else {
+                setNameUser(name)
+            }
+
         }
-        loadUserAvatar()
+        loadUserInfo()
     }, [onData])
+
+
+    //criar proximas chamadas fetch para meu projeto e depois otimizar useEffect para nao DRY  !!!
 
     return (
         <div className="github-info">
@@ -40,7 +52,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                         alt="example"
                         className="github-info__basic-profile-image"
                     />
-                    <h3 className="github-info__basic-username">{"Lucas"}</h3>
+                    <h3 className="github-info__basic-username">{nameUser}</h3>
                     <p className="github-info__basic-biography">
                         My name is Lucas, I'm 21 years old, currently studying front end with an interest in full-stack. All my projects will be published here and shared on LinkedIn.
                     </p>

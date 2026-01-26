@@ -12,8 +12,13 @@ class GitHubApi {
 
   async getAvatar(avatar: string) {
     const res = await this.getInfo(avatar)
-    return res.message ? console.log("Nao existe") : res.avatar_url
+    return res.message ? null : res.avatar_url
 
+  }
+
+  async getName(name: string) {
+    const res = await this.getInfo(name)
+    return res.message ? console.log("Nome Não Encontrado") : res.name
   }
 
 }
