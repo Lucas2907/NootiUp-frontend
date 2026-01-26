@@ -18,9 +18,14 @@ class GitHubApi {
 
   async getName(name: string) {
     const res = await this.getInfo(name)
-    return res.message ? console.log("Nome Não Encontrado") : res.name
+    return res.message ? null : res.name
   }
 
+  async getBio(bio: string) {
+    const res = await this.getInfo(bio)
+    return res.message ? null : res.bio
+
+  }
 }
 const apiGit = new GitHubApi()
 

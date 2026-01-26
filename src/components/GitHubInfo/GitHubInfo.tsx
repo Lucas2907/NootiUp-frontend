@@ -9,24 +9,32 @@ function GitHubInfo({ onData }: { onData: string }) {
 
     const [userAvatar, setUserAvatar] = useState<string>("")
     const [nameUser, setNameUser] = useState<string>("")
+    const [bioUser, setBioUser] = useState<string>("")
 
 
 
     useEffect(() => {
         async function loadUserInfo() {
             const avatar = await api.getAvatar(onData)
-            if (avatar == undefined) {
+            if (avatar == null) {
                 setUserAvatar("https://i.pinimg.com/736x/e8/c7/03/e8c703dd73d67cd8de09dfd4e839c99c.jpg")
             }
             else {
                 setUserAvatar(avatar)
             }
             const name = await api.getName(onData)
-            if (name == undefined) {
+            if (name == null) {
                 setNameUser("Not Found")
             }
             else {
                 setNameUser(name)
+            }
+            const bio = await api.getBio(onData)
+            if (bio === null) {
+                setBioUser("Not found")
+            }
+            else {
+                setBioUser(bio)
             }
 
         }
@@ -54,7 +62,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                     />
                     <h3 className="github-info__basic-username">{nameUser}</h3>
                     <p className="github-info__basic-biography">
-                        My name is Lucas, I'm 21 years old, currently studying front end with an interest in full-stack. All my projects will be published here and shared on LinkedIn.
+                        {bioUser}
                     </p>
                 </div>
 
