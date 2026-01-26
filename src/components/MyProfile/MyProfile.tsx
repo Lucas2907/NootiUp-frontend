@@ -4,23 +4,14 @@ import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import PopupMyProfile from "../Popup/PopupMyProfile";
-import { useState } from "react";
+import apiGit from "../../utils/GitHubApi";
 
 
-function MyProfile({ onSendGitName }: { onSendGitName: (name: string) => void }) {
-    const [isOpened, setIsOpened] = useState<boolean>(false);
+function MyProfile() {
 
-    const handleName = (name: string) => {
-        onSendGitName(name);
-    }
 
-    const openPopup = () => {
-        setIsOpened(true);
-    }
-
-    const closePopup = () => {
-        setIsOpened(false);
+    const handleLogin = () => {
+        apiGit.login()
     }
 
     return (
@@ -41,14 +32,10 @@ function MyProfile({ onSendGitName }: { onSendGitName: (name: string) => void })
             </div>
             <p className="my-profile-text">Entrou em 18/01/2025</p>
             <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile__button my-profile-exit">Sair</button></Link >
-            <button className="my-profile__button my-profile-addGit" onClick={openPopup}>
+            <button className="my-profile__button my-profile-addGit" onClick={handleLogin}>
                 <FontAwesomeIcon className="my-profile-addGit__icon" icon={faGithub} />
-                <p className="my-profile-addGit__text">Inserir user GitHub</p>
+                <p className="my-profile-addGit__text">Entrar com GitHub</p>
             </button>
-            <PopupMyProfile
-                isOpened={isOpened} onClose={closePopup} onSubmit={handleName}
-            />
-
         </div >
     )
 }

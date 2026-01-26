@@ -5,7 +5,7 @@ import api from "../../utils/GitHubApi"
 import { useState, useEffect } from "react"
 
 
-function GitHubInfo({ onData }: { onData: string }) {
+function GitHubInfo() {
 
     const [userAvatar, setUserAvatar] = useState<string>("")
     const [nameUser, setNameUser] = useState<string>("")
@@ -19,21 +19,21 @@ function GitHubInfo({ onData }: { onData: string }) {
 
     useEffect(() => {
         async function loadUserInfo() {
-            const avatar = await api.getAvatar(onData)
+            const avatar = await api.getAvatar("")
             if (avatar === null) {
                 setUserAvatar("https://i.pinimg.com/736x/e8/c7/03/e8c703dd73d67cd8de09dfd4e839c99c.jpg")
             }
             else {
                 setUserAvatar(avatar)
             }
-            const name = await api.getName(onData)
+            const name = await api.getName("")
             if (name === null) {
                 setNameUser("Not Found")
             }
             else {
                 setNameUser(name)
             }
-            const bio = await api.getBio(onData)
+            const bio = await api.getBio("")
             if (bio === null) {
                 setBioUser("Not found")
             }
@@ -41,7 +41,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                 setBioUser(bio)
             }
 
-            const followers = await api.getFollowers(onData)
+            const followers = await api.getFollowers("")
             if (followers === null) {
                 setFollowersUser("0")
             }
@@ -49,7 +49,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                 setFollowersUser(followers)
             }
 
-            const following = await api.getFollowing(onData)
+            const following = await api.getFollowing("")
             if (following === null) {
                 setFollowingUser("0")
             }
@@ -57,7 +57,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                 setFollowingUser(following)
             }
 
-            const location = await api.getLocation(onData)
+            const location = await api.getLocation("")
             if (location === null) {
                 setLocationUser("Not Found")
             }
@@ -65,7 +65,7 @@ function GitHubInfo({ onData }: { onData: string }) {
                 setLocationUser(location)
             }
 
-            const publicRepo = await api.getPublicRepo(onData)
+            const publicRepo = await api.getPublicRepo("")
             if (publicRepo === null) {
                 setPublicRepoUser("Not Found")
             }
@@ -75,7 +75,7 @@ function GitHubInfo({ onData }: { onData: string }) {
 
         }
         loadUserInfo()
-    }, [onData])
+    }, [])
 
 
     //criar proximas chamadas fetch para meu projeto e depois otimizar useEffect para nao DRY  !!!
