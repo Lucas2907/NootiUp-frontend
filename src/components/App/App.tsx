@@ -6,15 +6,10 @@ import Layout from "../Layout/Layout"
 import MyProfile from "../MyProfile/MyProfile"
 import Preloader from "../Preloader/Preloader"
 import GitHubInfo from "../GitHubInfo/GitHubInfo"
-import { useState } from "react"
 
 function App() {
 
-  const [gitName, setGitName] = useState('');
 
-  function handleGitName(name: string) {
-    setGitName(name)
-  }
 
 
 
@@ -26,8 +21,8 @@ function App() {
         <Route path="/signup" element={<Main route="signup" />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/my-progress" element={<MyProgress />} />
-        <Route path="/my-profile" element={<MyProfile onSendGitName={handleGitName} />} />
-        <Route path="/github-info" element={<GitHubInfo onData={gitName} />} />
+        <Route path="/my-profile" element={<MyProfile/>} />
+        <Route path="/github-info" element={<GitHubInfo/>} />
       </Route>
     </Routes>
   )
