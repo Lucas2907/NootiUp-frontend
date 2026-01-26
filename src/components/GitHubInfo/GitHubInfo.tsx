@@ -1,10 +1,29 @@
-import profileImage from "../../assets/images/profile-example.jpg"
 import socialIcon from "../../assets/images/social.png"
 import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
+import api from "../../utils/GitHubApi"
+import { useState, useEffect } from "react"
 
 
-function GitHubInfo() {
+function GitHubInfo({ onData }: { onData: string }) {
+
+    const [userAvatar, setUserAvatar] = useState<string>("")
+
+
+
+    useEffect(() => {
+        async function loadUserAvatar() {
+            const name = await api.getAvatar(onData)
+            if (name == undefined) {
+                setUserAvatar("https://i.pinimg.com/736x/e8/c7/03/e8c703dd73d67cd8de09dfd4e839c99c.jpg")
+            }
+            else {
+                setUserAvatar(name)
+            }
+        }
+        loadUserAvatar()
+    }, [onData])
+
     return (
         <div className="github-info">
             <h1 className="github-info__title">Informações da sua conta GitHub</h1>
@@ -17,11 +36,11 @@ function GitHubInfo() {
                     </div>
 
                     <img
-                        src={profileImage}
+                        src={userAvatar}
                         alt="example"
                         className="github-info__basic-profile-image"
                     />
-                    <h3 className="github-info__basic-username">Lucas Garcia</h3>
+                    <h3 className="github-info__basic-username">{"Lucas"}</h3>
                     <p className="github-info__basic-biography">
                         My name is Lucas, I'm 21 years old, currently studying front end with an interest in full-stack. All my projects will be published here and shared on LinkedIn.
                     </p>

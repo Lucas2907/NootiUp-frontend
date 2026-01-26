@@ -12,7 +12,7 @@ function MyProgress() {
         <div className="my-progress">
             <h1 className="my-progress__title">Meu Progresso</h1>
             <div className="my-progress__profile">
-                <InfoUser profileImage={profileImage} name="Lucas" about="Web Developer"></InfoUser>
+                <InfoUser profileImage={profileImage} name="User" about="Web Developer"></InfoUser>
                 <div className="my-progress__profile-stats">
                     <div className="my-progress__profile-stats-item ">
                         <p className="my-progress__profile-stats-number">2</p>
