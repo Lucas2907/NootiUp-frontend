@@ -77,9 +77,6 @@ function GitHubInfo() {
         loadUserInfo()
     }, [])
 
-
-    //criar proximas chamadas fetch para meu projeto e depois otimizar useEffect para nao DRY  !!!
-
     return (
         <div className="github-info">
             <h1 className="github-info__title">Informações da sua conta GitHub</h1>
