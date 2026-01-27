@@ -3,6 +3,7 @@ import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
 import api from "../../utils/GitHubApi"
 import { useState, useEffect } from "react"
+import userImage from "../../assets/images/user.jpg"
 
 
 function GitHubInfo() {
@@ -21,7 +22,7 @@ function GitHubInfo() {
         async function loadUserInfo() {
             const avatar = await api.getAvatar("")
             if (avatar === null) {
-                setUserAvatar("https://i.pinimg.com/736x/e8/c7/03/e8c703dd73d67cd8de09dfd4e839c99c.jpg")
+                setUserAvatar(userImage)
             }
             else {
                 setUserAvatar(avatar)
