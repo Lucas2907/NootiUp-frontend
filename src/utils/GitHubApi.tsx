@@ -9,7 +9,7 @@ class GitHubApi {
     const params = new URLSearchParams({
       client_id: CLIENT_ID,
       redirect_uri: REDIRECT_URI,
-      scope: "user",
+      scope: "read:user",
       allow_signup: "true"
     })
 
