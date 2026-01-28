@@ -1,11 +1,55 @@
-.gitHub-container {
+.github-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2.2rem;
 }
 
 .github-container__text {
   font-weight: 500;
+  margin: 0;
+}
+
+.github-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.github-form__elements {
+  display: flex;
+  flex-direction: column;
+}
+
+.github-form__elements-label {
+  margin: 3rem 0 0.3rem 0;
+}
+
+.github-form__input {
+  margin: 0;
+  border: none;
+  background-color: inherit;
+  border-bottom: 2px solid black;
+}
+
+.github-form__input:focus {
+  outline: none;
+}
+
+.github-form__submit {
+  width: 60%;
+  border-radius: 2rem;
+  background-color: #000000;
+  color: aliceblue;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: none;
+}
+
+.github-form__submit:hover {
+  opacity: 70%;
+  cursor: pointer;
 }
 
 .github-info {

@@ -2,27 +2,46 @@ import socialIcon from "../../assets/images/social.png"
 import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
 import apiGit from "../../utils/GitHubApi"
-import ButtonGitHub from "../ButtonGitHub/ButtonGitHub"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function GitHubInfo() {
 
-    const [user, setUser] = useState()
-
-    async function showUser(name: string) {
-        const currentUser = await apiGit.getInfo(name)
-        setUser(currentUser)
+    interface UserInfo {
+        [key: string]: string;
     }
 
+    const [user, setUser] = useState<string>("")
+    const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
+        const savedUser = localStorage.getItem("user");
+        return savedUser ? JSON.parse(savedUser) : null
+    });
 
-    if (!user) {
-        showUser("Lucas")
-        console.log(user)
+    function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        setUser(user)
+        if (user) {
+            showUserInfo(user)
+        }
+        return
+    }
+
+    async function showUserInfo(name: string) {
+        const currentUser = await apiGit.getInfo(name)
+        return currentUser.message ? null : setUserInfo(currentUser), localStorage.setItem("user", JSON.stringify(currentUser))
+    }
+
+    if (!userInfo) {
         return (
 
-            <div className="gitHub-container">
-                <h2 className="github-container__text">Logue com sua conta do GitHub para ver suas Informações</h2>
-                <ButtonGitHub />
+            <div className="github-container">
+                <h2 className="github-container__text">Entre com GitHub para exibir suas informações</h2>
+                <form className="github-form" onSubmit={showCurrentUser} >
+                    <div className="github-form__elements">
+                        <label className="github-form__elements-label" id="git-input">Username</label>
+                        <input onChange={(e) => setUser(e.target.value)} value={user} className="github-form__input" id="git-input" />
+                    </div>
+                    <button className="github-form__submit" type="submit">Entrar</button>
+                </form>
             </div>
         )
     }
@@ -39,13 +58,13 @@ function GitHubInfo() {
                     </div>
 
                     <img
-                        src={user.avatar_url}
+                        src={userInfo.avatar_url}
                         alt="example"
                         className="github-info__basic-profile-image"
                     />
-                    <h3 className="github-info__basic-username">{user.name}</h3>
+                    <h3 className="github-info__basic-username">{userInfo.name}</h3>
                     <p className="github-info__basic-biography">
-                        {user.bio}
+                        {userInfo.bio}
                     </p>
                 </div>
 
@@ -58,12 +77,12 @@ function GitHubInfo() {
 
                     <div className="github-info__social-list">
                         <div className="github-info__social-item">
-                            <p className="github-info__social-value">{user.followers}</p>
+                            <p className="github-info__social-value">{userInfo.followers}</p>
                             <p className="github-info__social-label">Followers</p>
                         </div>
 
                         <div className="github-info__social-item">
-                            <p className="github-info__social-value">{user.following}</p>
+                            <p className="github-info__social-value">{userInfo.following}</p>
                             <p className="github-info__social-label">Following</p>
                         </div>
                     </div>
@@ -75,12 +94,12 @@ function GitHubInfo() {
                         src={worldIcon}
                         alt="world icon"
                     />
-                    <p className="github-info__location-text">{user.location}</p>
+                    <p className="github-info__location-text">{userInfo.location}</p>
                 </div>
 
                 <div className="github-info__card github-info__card--repos">
                     <p className="github-info__repos-label">Public Reps</p>
-                    <p className="github-info__repos-value">{user.public_repos}</p>
+                    <p className="github-info__repos-value">{userInfo.public_repos}</p>
                 </div>
             </div>
         </div>
