@@ -27,7 +27,6 @@ function MyProfile() {
             </div>
             <p className="my-profile-text">Entrou em 18/01/2025</p>
             <Link to={"/signin"} className="app-link my-profile-exit_link"><button className="my-profile__button my-profile-exit">Sair</button></Link >
-            <ButtonGitHub />
         </div >
     )
 }

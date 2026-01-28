@@ -22,9 +22,11 @@ class GitHubApi {
     const res = await fetch(`https://api.github.com/users/${info}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         return data
 
+      }).catch((err) => {
+        console.log(err)
+        return null
       })
     return res
   }
