@@ -2,8 +2,6 @@
 import editProfile from "../../assets/images/edit-profile.png"
 import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
-import ButtonGitHub from "../ButtonGitHub/ButtonGitHub"
-
 
 
 function MyProfile() {

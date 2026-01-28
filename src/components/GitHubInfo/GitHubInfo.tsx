@@ -2,7 +2,7 @@ import socialIcon from "../../assets/images/social.png"
 import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
 import apiGit from "../../utils/GitHubApi"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 function GitHubInfo() {
 
@@ -13,8 +13,25 @@ function GitHubInfo() {
     const [user, setUser] = useState<string>("")
     const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
         const savedUser = localStorage.getItem("user");
-        return savedUser ? JSON.parse(savedUser) : null
+        if (!savedUser) return null;
+        try {
+            const parsed = JSON.parse(savedUser);
+            if (parsed.message) {
+                return null
+
+            }
+            return parsed;
+        } catch {
+            return null;
+        }
     });
+
+    function removeAcess() {
+        localStorage.removeItem("user")
+        setUserInfo(null)
+        window.location.reload()
+
+    }
 
     function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -102,6 +119,7 @@ function GitHubInfo() {
                     <p className="github-info__repos-value">{userInfo.public_repos}</p>
                 </div>
             </div>
+            <button className="exit-git" onClick={removeAcess}>Sair da conta GitHub</button>
         </div>
     )
 }
