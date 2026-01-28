@@ -85,7 +85,6 @@
   font-size: 1.5rem;
   border-radius: 3.1rem;
   padding: 1.2rem 2.1rem;
-
   border: none;
   width: 100%;
 }
@@ -98,20 +97,6 @@
 .my-profile-exit {
   color: #fff;
   background-color: #736eed;
-}
-
-.my-profile-addGit {
-  color: white;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  grid-area: git;
-}
-
-.my-profile-addGit__text {
-  margin: 0;
-  height: 25px;
 }
 
 .my-profile-exit_link {

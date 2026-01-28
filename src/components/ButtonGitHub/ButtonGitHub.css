@@ -1,0 +1,27 @@
+.git-button {
+  color: white;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  grid-area: git;
+  font-size: 1.5rem;
+  border-radius: 3.1rem;
+  padding: 1.2rem 2.1rem;
+  border: none;
+  max-width: 18.7rem;
+}
+
+.git-button:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.git-button:active {
+  opacity: 90%;
+}
+
+.my-profile-addGit__text {
+  margin: 0;
+  font-size: 1.3rem;
+}

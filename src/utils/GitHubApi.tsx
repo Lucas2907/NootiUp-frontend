@@ -64,6 +64,18 @@ class GitHubApi {
     return res.message ? null : res.public_repos
   }
 
+  getLoggedUser() {
+    try {
+      return JSON.parse(localStorage.getItem("users") || 'null')
+    } catch {
+      return null
+    }
+  }
+
+  isLoggedIn() {
+    return !!this.getLoggedUser()
+  }
+
 
 }
 const apiGit = new GitHubApi()
