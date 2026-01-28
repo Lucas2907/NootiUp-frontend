@@ -3,11 +3,23 @@ import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
 import apiGit from "../../utils/GitHubApi"
 import ButtonGitHub from "../ButtonGitHub/ButtonGitHub"
+import { useState } from "react"
 
 function GitHubInfo() {
-    const user = apiGit.getLoggedUser()
+
+    const [user, setUser] = useState()
+
+    async function showUser(name: string) {
+        const currentUser = await apiGit.getInfo(name)
+        setUser(currentUser)
+    }
+
+
     if (!user) {
+        showUser("Lucas")
+        console.log(user)
         return (
+
             <div className="gitHub-container">
                 <h2 className="github-container__text">Logue com sua conta do GitHub para ver suas Informações</h2>
                 <ButtonGitHub />
@@ -15,6 +27,7 @@ function GitHubInfo() {
         )
     }
     return (
+
         <div className="github-info">
             <h1 className="github-info__title">Informações da sua conta GitHub</h1>
 
