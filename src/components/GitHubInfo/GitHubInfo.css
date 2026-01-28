@@ -56,6 +56,9 @@
   width: 100%;
   padding: 0 6rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .github-info__title {
@@ -188,4 +191,22 @@
   margin: 0;
   font-size: 4.3rem;
   font-weight: 600;
+}
+
+.exit-git {
+  margin: 2rem 0 0 0;
+  padding: 1rem;
+  border-radius: 3rem;
+  font-size: 1.5rem;
+  background-color: #e60909;
+  color: white;
+  border: none;
+}
+
+.exit-git:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+.exit-git:active {
+  opacity: 90%;
 }
