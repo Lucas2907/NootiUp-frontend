@@ -32,6 +32,7 @@ function GitHubInfo() {
     function removeAcess() {
         localStorage.removeItem("user")
         setUserInfo(null)
+        setUser("")
         window.location.reload()
 
     }
