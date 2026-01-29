@@ -13,6 +13,7 @@ function GitHubInfo() {
 
     const [user, setUser] = useState<string>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isError, setIsError] = useState<boolean>(false)
     const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
         const savedUser = localStorage.getItem("user");
         if (!savedUser) return null;
@@ -37,6 +38,7 @@ function GitHubInfo() {
 
     async function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        setIsError(false)
         setIsLoading(true)
         try {
             if (user) {
@@ -45,12 +47,20 @@ function GitHubInfo() {
                     setUserInfo(currentUser)
                     localStorage.setItem("user", JSON.stringify(currentUser))
                 }
+                if (currentUser.status == "404") {
+                    setIsError(true)
+                }
             }
         } catch (error) {
-            console.log(error)
+            console.log("erro", error)
         } finally {
             setIsLoading(false)
         }
+    }
+
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUser(e.target.value);
+        setIsError(false);
     }
 
     if (isLoading) {
@@ -59,6 +69,7 @@ function GitHubInfo() {
         )
     }
 
+
     if (!userInfo) {
         return (
 
@@ -66,10 +77,11 @@ function GitHubInfo() {
                 <h2 className="github-container__text">Entre com GitHub para exibir suas informações</h2>
                 <form className="github-form" onSubmit={showCurrentUser} >
                     <div className="github-form__elements">
-                        <label className="github-form__elements-label" id="git-input">Username</label>
-                        <input onChange={(e) => setUser(e.target.value)} value={user} className="github-form__input" id="git-input" />
+                        <label className="github-form__elements-label" id="git-input">Username:</label>
+                        <input onChange={handleChangeInput} value={user} className={`github-form__input ${isError ? "github-form__input_error" : ""}`} id="git-input" />
+                        <p className={`github-form__text ${isError ? "github-form__text_error" : ""}`}>usuário não encontrado</p>
                     </div>
-                    <button className="github-form__submit" type="submit">Entrar</button>
+                    <button disabled={isError ? true : false} className={`github-form__submit ${isError ? "github-form__submit_disabled" : ""}`} type="submit">Entrar</button>
                 </form>
             </div>
         )
