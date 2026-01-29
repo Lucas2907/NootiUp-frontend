@@ -124,3 +124,67 @@
 .main__link_redirect {
   color: #736eed;
 }
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1.5rem 1rem;
+  }
+
+  .main__title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .main__description {
+    font-size: 1rem;
+    margin: 0.75rem 0 2rem;
+    max-width: 100%;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  .form__inputs {
+    gap: 1rem;
+  }
+
+  .form__field {
+    min-width: 100%;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .form__input {
+    font-size: 1rem;
+  }
+
+  .form__icon {
+    max-width: 1.3rem;
+  }
+
+  .form__submit {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+
+  .main__link {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+
+  .form__field {
+    min-width: 24rem;
+  }
+
+  .main__title {
+    font-size: 2.4rem;
+  }
+}
