@@ -19,7 +19,7 @@ function CardsModule({ imageModule, name, lessons, tasks }: CardsModuleProps) {
                     <li className="about__list-tasks">{tasks} tasks</li>
                 </ul>
             </div>
-            <img src={threeDots} alt="" className="modules__cards-three-dots" />
+            <img src={threeDots} alt="three Dots icon" className="modules__cards-three-dots" />
         </div>
     )
 }

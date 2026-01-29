@@ -27,7 +27,7 @@ function Main({ route }: MainProps) {
                         <img
                             className="form__icon"
                             src={hidePassword}
-                            alt="icone de senha Visivel"
+                            alt="a password hidden icon"
                         />
                     </div>
                     {!isSignin && (
@@ -36,7 +36,7 @@ function Main({ route }: MainProps) {
                             <img
                                 className="form__icon"
                                 src={hidePassword}
-                                alt="icone de senha Visivel"
+                                alt="a password visible icon"
                             />
                         </div>
                     )}
