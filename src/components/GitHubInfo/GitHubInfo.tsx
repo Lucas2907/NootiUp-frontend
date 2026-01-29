@@ -3,6 +3,7 @@ import worldIcon from "../../assets/images/world.png"
 import infoIcon from "../../assets/images/info.png"
 import apiGit from "../../utils/GitHubApi"
 import { useState } from "react"
+import Preloader from "../Preloader/Preloader"
 
 function GitHubInfo() {
 
@@ -11,16 +12,17 @@ function GitHubInfo() {
     }
 
     const [user, setUser] = useState<string>("")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
         const savedUser = localStorage.getItem("user");
         if (!savedUser) return null;
         try {
             const parsed = JSON.parse(savedUser);
-            if (parsed.message) {
-                return null
+            if (parsed.id) {
+                return parsed
 
             }
-            return parsed;
+            return null;
         } catch {
             return null;
         }
@@ -33,18 +35,28 @@ function GitHubInfo() {
 
     }
 
-    function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
+    async function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        setUser(user)
-        if (user) {
-            showUserInfo(user)
+        setIsLoading(true)
+        try {
+            if (user) {
+                const currentUser = await apiGit.getInfo(user)
+                if (!currentUser.message) {
+                    setUserInfo(currentUser)
+                    localStorage.setItem("user", JSON.stringify(currentUser))
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
         }
-        return
     }
 
-    async function showUserInfo(name: string) {
-        const currentUser = await apiGit.getInfo(name)
-        return currentUser.message ? null : setUserInfo(currentUser), localStorage.setItem("user", JSON.stringify(currentUser))
+    if (isLoading) {
+        return (
+            <Preloader />
+        )
     }
 
     if (!userInfo) {
