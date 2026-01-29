@@ -139,6 +139,7 @@
   width: 11.5rem;
   height: 11.5rem;
   border-radius: 50%;
+  border: 0.3rem solid #736eed;
 }
 
 .github-info__basic-username {
