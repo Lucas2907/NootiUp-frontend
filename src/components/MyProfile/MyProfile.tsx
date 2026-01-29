@@ -10,7 +10,7 @@ function MyProfile() {
     return (
         <div className="my-profile">
             <div className="my-profile__user-info">
-                <img className="my-profile__user-image" src={profileImage} alt="" />
+                <img className="my-profile__user-image" src={profileImage} alt="profile image icon" />
                 <div className="my-profile__user-data">
                     <div className="my-profile__user-info">
                         <h2 className="my-profile__user-info-name">User</h2>

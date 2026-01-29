@@ -79,7 +79,7 @@ function GitHubInfo() {
                 <form className="github-form" onSubmit={showCurrentUser} >
                     <div className="github-form__elements">
                         <label className="github-form__elements-label" id="git-input">Username:</label>
-                        <input onChange={handleChangeInput} value={user} className={`github-form__input ${isError ? "github-form__input_error" : ""}`} id="git-input" />
+                        <input onChange={handleChangeInput} value={user} className={`github-form__input ${isError ? "github-form__input_error" : ""}`} id="git-input" placeholder="Lucas2907" />
                         <p className={`github-form__text ${isError ? "github-form__text_error" : ""}`}>usuário não encontrado</p>
                     </div>
                     <button disabled={isError ? true : false} className={`github-form__submit ${isError ? "github-form__submit_disabled" : ""}`} type="submit">Entrar</button>
@@ -101,7 +101,7 @@ function GitHubInfo() {
 
                     <img
                         src={userInfo.avatar_url}
-                        alt="example"
+                        alt="avatar user info"
                         className="github-info__basic-profile-image"
                     />
                     <h3 className="github-info__basic-username">{userInfo.name}</h3>
@@ -114,7 +114,7 @@ function GitHubInfo() {
                     <img
                         className="github-info__social-icon"
                         src={socialIcon}
-                        alt=""
+                        alt="a social-info icon"
                     />
 
                     <div className="github-info__social-list">
