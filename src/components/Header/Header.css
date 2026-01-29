@@ -30,9 +30,15 @@
   opacity: 100%;
 }
 
+.header-options {
+  width: 2rem;
+  display: none;
+}
+
 @media (max-width: 480px) {
   .header {
     padding: 1rem;
+    justify-content: space-between;
   }
 
   .header__list {
@@ -40,17 +46,22 @@
   }
 
   .header__list-item {
-    font-size: 1rem;
+    display: none;
+  }
+
+  .header-options {
+    width: 2rem;
+    display: flex;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .header {
-    padding: 1.2rem 1.5rem;
+    padding: 1.2rem 1rem;
   }
 
   .header__list-item {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .header__list {

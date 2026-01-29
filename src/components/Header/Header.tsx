@@ -1,7 +1,7 @@
 import Logo from "../Logo/Logo"
 import RedirectButton from "../RedirectButton/RedirectButton"
 import { Link, useLocation, NavLink } from "react-router-dom"
-
+import optionsIcon from "../../assets/images/three-lines.png"
 function Header() {
     const { pathname } = useLocation()
     const customClassName = ({ isActive }: { isActive: boolean }) => "header__list-item app-link " + (isActive ? "header__list-item_active " : "")
@@ -37,6 +37,7 @@ function Header() {
                 <NavLink className={customClassName} to={"/github-info"}>GitHub Info</NavLink>
                 <NavLink to={"/my-profile"} className="app-link"><RedirectButton text={'User'} isLogged={true} /></NavLink>
             </nav >
+            <img className="header-options" src={optionsIcon} alt=" icon to show options inside aplication " />
         </header >
     )
 }
