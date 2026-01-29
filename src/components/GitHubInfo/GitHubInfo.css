@@ -24,6 +24,7 @@
 
 .github-form__elements-label {
   margin: 3rem 0 0.3rem 0;
+  font-weight: 700;
 }
 
 .github-form__input {
@@ -35,6 +36,22 @@
 
 .github-form__input:focus {
   outline: none;
+}
+
+.github-form__input_error {
+  border-bottom: 2px solid #e60909;
+}
+
+.github-form__text {
+  margin: 0.3rem 0 0;
+  font-size: 0.73rem;
+  color: #e60909;
+  font-weight: 700;
+  visibility: hidden;
+}
+
+.github-form__text_error {
+  visibility: visible;
 }
 
 .github-form__submit {
@@ -59,6 +76,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.github-form__submit_disabled {
+  background-color: #7c7979;
+}
+
+.github-form__submit_disabled:hover {
+  cursor: default;
+  opacity: 100%;
 }
 
 .github-info__title {
