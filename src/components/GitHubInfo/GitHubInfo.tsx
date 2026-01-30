@@ -1,6 +1,5 @@
 import socialIcon from "../../assets/images/social.png"
 import worldIcon from "../../assets/images/world.png"
-import infoIcon from "../../assets/images/info.png"
 import apiGit from "../../utils/GitHubApi"
 import { useState } from "react"
 import Preloader from "../Preloader/Preloader"
@@ -96,7 +95,6 @@ function GitHubInfo() {
                 <div className="github-info__card github-info__card--basic">
                     <div className="github-info__basic-header">
                         <h2 className="github-info__basic-title">Basic Info</h2>
-                        <img className="github-info__basic-icon" src={infoIcon} alt="" />
                     </div>
 
                     <img
