@@ -126,13 +126,9 @@
 }
 
 .github-info__basic-title {
-  font-size: 2.8rem;
+  text-align: center;
+  font-size: 3rem;
   margin: 0;
-}
-
-.github-info__basic-icon {
-  width: 2.5rem;
-  height: 2.5rem;
 }
 
 .github-info__basic-profile-image {
@@ -236,4 +232,134 @@
 }
 .exit-git:active {
   opacity: 90%;
+}
+
+@media (max-width: 480px) {
+  .github-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .github-container__text {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .github-form {
+    width: 100%;
+  }
+
+  .github-form__elements {
+    width: 100%;
+  }
+
+  .github-form__input {
+    font-size: 1rem;
+  }
+
+  .github-form__submit {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+  }
+
+  .github-info {
+    padding: 0 1rem;
+  }
+
+  .github-info__title {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .github-info__cards {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "basic"
+      "stats"
+      "location"
+      "repos";
+    gap: 1.2rem;
+  }
+
+  .github-info__card {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .github-info__basic-title {
+    font-size: 2rem;
+  }
+
+  .github-info__basic-profile-image {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .github-info__basic-username {
+    font-size: 1.6rem;
+  }
+
+  .github-info__basic-biography {
+    font-size: 1rem;
+  }
+
+  .github-info__social-value {
+    font-size: 2.2rem;
+  }
+
+  .github-info__social-label {
+    font-size: 1rem;
+  }
+
+  .github-info__location-text {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .github-info__repos-label {
+    font-size: 2rem;
+  }
+
+  .github-info__repos-value {
+    font-size: 3rem;
+  }
+
+  .exit-git {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1000px) {
+  .github-container {
+    padding: 2rem 2rem;
+  }
+
+  .github-info {
+    padding: 0 2rem;
+  }
+
+  .github-info__title {
+    font-size: 2.4rem;
+    margin: 2rem 0 3rem;
+  }
+
+  .github-info__cards {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "basic"
+      "stats"
+      "location"
+      "repos";
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .github-info__card {
+    padding: 1.4rem 2rem;
+  }
+
+  .exit-git {
+    font-size: 1.3rem;
+  }
 }
