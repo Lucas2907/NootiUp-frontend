@@ -86,3 +86,69 @@
   padding: 2.2rem 3.1rem;
   box-sizing: border-box;
 }
+
+@media (max-width: 480px) {
+  .my-progress {
+    padding: 1.5rem 1rem;
+  }
+
+  .my-progress__title {
+    font-size: 2.2rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .my-progress__profile-image {
+    max-width: 10rem;
+    max-height: 10rem;
+  }
+
+  .my-progress__profile-title {
+    font-size: 2rem;
+  }
+
+  .my-progress__profile {
+    width: 100%;
+    padding: 1.5rem 1.8rem;
+  }
+
+  .my-progress__profile-stats {
+    gap: 1.2rem;
+    padding-top: 0.5rem;
+  }
+
+  .my-progress__profile-stats-number {
+    font-size: 1.4rem;
+  }
+
+  .my-progress__profile-stats-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .my-progress__recent {
+    font-size: 1.5rem;
+    padding: 2rem 0 0.5rem;
+  }
+
+  .my-progress__recent-items {
+    padding: 1.5rem 1.8rem;
+    gap: 1.2rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .my-progress {
+    width: 95%;
+    padding: 2rem 1.5rem;
+  }
+
+  .my-progress__profile {
+    max-width: 90%;
+    padding: 2rem 2.5rem;
+  }
+
+  .my-progress__recent-items {
+    max-width: 95%;
+    padding: 2rem 2.5rem;
+  }
+}
