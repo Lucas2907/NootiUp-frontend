@@ -30,7 +30,7 @@ function Header() {
     }
     return (
         <header className="header">
-            <Logo />
+            <Link className="app-link" to={"/"}><Logo /></Link>
             <nav className="header__list">
                 <NavLink className={customClassName} to={"/"}>Página Inicial</NavLink>
                 <NavLink className={customClassName} to={"/my-progress"}>Meu Progresso</NavLink>
