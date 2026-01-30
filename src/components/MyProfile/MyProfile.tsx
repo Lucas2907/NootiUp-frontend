@@ -12,7 +12,7 @@ function MyProfile() {
             <div className="my-profile__user-info">
                 <img className="my-profile__user-image" src={profileImage} alt="profile image icon" />
                 <div className="my-profile__user-data">
-                    <div className="my-profile__user-info">
+                    <div className="my-profile__user-info-data">
                         <h2 className="my-profile__user-info-name">User</h2>
                         <img className="my-profile__user-info-image" src={editProfile} alt="a profile edit icon" />
                     </div>
