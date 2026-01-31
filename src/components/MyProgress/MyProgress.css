@@ -136,7 +136,7 @@
   }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 590px) and (max-width: 768px) {
   .my-progress {
     width: 95%;
     padding: 2rem 1.5rem;
