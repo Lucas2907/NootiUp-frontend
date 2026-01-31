@@ -39,7 +39,7 @@ function Main({ route }: MainProps) {
                         <div className="main__form-field main__form-email">
 
 
-                            <input id="email" className="main__form-input" type="email" />
+                            <input required id="email" className="main__form-input" type="email" />
 
                         </div>
                     </div>
@@ -48,7 +48,7 @@ function Main({ route }: MainProps) {
                         <div className="main__form-field main__form-password">
 
 
-                            <input id="password" className="main__form-input" type={isPasswordVisible ? "text" : "password"} />
+                            <input required id="password" className="main__form-input" type={isPasswordVisible ? "text" : "password"} />
 
                             <button
                                 type="button"
@@ -71,7 +71,7 @@ function Main({ route }: MainProps) {
                             <label className="main__form-label" htmlFor="confirm-password">Confirm Password</label>
                             <div className="main__form-field main__form-password main__form-password-confirmation">
 
-                                <input id="confirm-password" className="main__form-input" type="password" />
+                                <input required id="confirm-password" className="main__form-input" type="password" />
                             </div>
                         </div>
                     )}

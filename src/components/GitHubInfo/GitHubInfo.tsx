@@ -57,7 +57,6 @@ function GitHubInfo() {
             setIsLoading(false)
         }
     }
-
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser(e.target.value);
         setIsError(false);
@@ -81,7 +80,15 @@ function GitHubInfo() {
                         <input onChange={handleChangeInput} value={user} className={`github-container__form-input ${isError ? "github-container__form-input_error" : ""}`} id="git-input" placeholder="Lucas2907" />
                         <p className={`github-container__form-text ${isError ? "github-container__form-text_error" : ""}`}>usuário não encontrado</p>
                     </div>
-                    <button disabled={isError ? true : false} className={`github-container__form-submit ${isError ? "github-container__form-submit_disabled" : ""}`} type="submit">Entrar</button>
+                    <button
+                        type="submit"
+                        disabled={isError || !user}
+                        className={`github-container__form-submit ${isError || !user ? "github-container__form-submit_disabled" : ""
+                            }`}
+                    >
+                        Entrar
+                    </button>
+
                 </form>
             </div>
         )
