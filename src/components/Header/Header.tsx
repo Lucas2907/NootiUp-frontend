@@ -54,15 +54,10 @@ function Header() {
                 <NavLink className={customClassName} to="/github-info">
                     GitHub Info
                 </NavLink>
-                <NavLink to="/my-profile" className="app-link">
-                    <RedirectButton text="User" isLogged={true} />
-                </NavLink>
             </nav>
-
             <NavLink
                 to="/my-profile"
                 className="app-link"
-                onClick={toggleMenu}
             >
                 <RedirectButton text="User" isLogged={true} />
             </NavLink>
