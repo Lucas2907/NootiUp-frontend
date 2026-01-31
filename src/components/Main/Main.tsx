@@ -54,13 +54,13 @@ function Main({ route }: MainProps) {
                                 type="button"
                                 className="main__form-icon-button"
                                 aria-pressed={isPasswordVisible}
-                                aria-label={isPasswordVisible ? "Hide password " : "Show password"}
+                                aria-label={isPasswordVisible ? visiblePassword : hidenPassword}
                                 onClick={togglePasswordVisible}
                             >
                                 <img
                                     className="main__form-icon"
                                     src={isPasswordVisible ? visiblePassword : hidenPassword}
-                                    alt=""
+                                    alt={isPasswordVisible ? "visible password icon" : "hidde password icon"}
                                     aria-hidden="true"
                                 />
                             </button>
