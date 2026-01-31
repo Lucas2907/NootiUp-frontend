@@ -77,7 +77,7 @@ function GitHubInfo() {
                 <h2 className="github-container__text">Entre com GitHub para exibir suas informações</h2>
                 <form className="github-container__form" onSubmit={showCurrentUser} >
                     <div className="github-container__form-elements">
-                        <label className="github-container__form-elements-label" id="git-input">Username:</label>
+                        <label className="github-container__form-elements-label" htmlFor="git-input">Username:</label>
                         <input onChange={handleChangeInput} value={user} className={`github-container__form-input ${isError ? "github-container__form-input_error" : ""}`} id="git-input" placeholder="Lucas2907" />
                         <p className={`github-container__form-text ${isError ? "github-container__form-text_error" : ""}`}>usuário não encontrado</p>
                     </div>

@@ -1,6 +1,10 @@
-function Logo() {
+interface LogoProps {
+    isBlack: boolean;
+}
+
+function Logo({ isBlack }: LogoProps) {
     return (
-        <p className="logo">NootiUp</p>
+        <p className={`logo ${isBlack ? "logo--black " : ""}`}>NootiUp</p>
     )
 }
 

@@ -38,6 +38,11 @@
   font-size: 3.1rem;
 }
 
+.my-profile__edit-button {
+  border: none;
+  background-color: transparent;
+}
+
 .my-profile__user-about {
   margin: 0;
   font-size: 1.5rem;
@@ -108,7 +113,7 @@
   justify-content: center;
   width: 100%;
   max-width: 9.8rem;
-  margin-left: auto;
+  margin: 0 auto;
 }
 
 @media (max-width: 480px) {
@@ -121,7 +126,6 @@
       "sair";
     padding: 1.5rem 1rem;
     row-gap: 1rem;
-    place-items: center;
   }
 
   .my-profile__user-image {
@@ -170,10 +174,6 @@
     font-size: 1.1rem;
     padding: 0.9rem 1.2rem;
     max-width: 50%;
-  }
-
-  .my-profile__exit-link {
-    max-width: 100%;
   }
 }
 
