@@ -6,7 +6,7 @@ import Layout from "../Layout/Layout"
 import MyProfile from "../MyProfile/MyProfile"
 import Preloader from "../Preloader/Preloader"
 import GitHubInfo from "../GitHubInfo/GitHubInfo"
-// import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage"
+// import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage"(BACKEND)
 
 function App() {
 
