@@ -10,16 +10,16 @@ type CardsModuleProps = {
 function CardsModule({ imageModule, name, lessons, tasks }: CardsModuleProps) {
     return (
 
-        <div className="modules__card">
-            <img src={imageModule} alt={name + "icon example"} className="modules__card-image" />
-            <div className="modules__card-about">
-                <h2 className="cards-about__title">{name}</h2>
-                <ul className="cards-about__list">
-                    <li className="about__list-lesson">{lessons} lessons</li>
-                    <li className="about__list-tasks">{tasks} tasks</li>
+        <div className="modules-card">
+            <img src={imageModule} alt={name + "icon example"} className="modules-card__image" />
+            <div className="modules-card__about">
+                <h2 className="modules-card__title">{name}</h2>
+                <ul className="modules-card__list">
+                    <li className="modules-card__lesson">{lessons} lessons</li>
+                    <li className="modules-card__tasks">{tasks} tasks</li>
                 </ul>
             </div>
-            <img src={threeDots} alt="three Dots icon" className="modules__cards-three-dots" />
+            <img src={threeDots} alt="three Dots icon" className="modules-card__icon" />
         </div>
     )
 }

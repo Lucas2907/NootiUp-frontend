@@ -26,23 +26,23 @@ function Main({ route }: MainProps) {
                 {isSignin ? "Aprender é revigorante e ter você conosco novamente nos revigora da mesma forma" : "Seja bem vindo ao NootUp, onde seu aprendizado não tem limites"}
             </p>
             <form className="form">
-                <div className="form__inputs">
-                    <div className="form__field form__user">
-                        <input className="form__input" type="email" placeholder="E-mail" />
+                <div className="main__form-inputs">
+                    <div className="main__form-field main__form-email">
+                        <input className="main__form-input" type="email" placeholder="E-mail" />
                     </div>
-                    <div className="form__field form__password">
-                        <input className="form__input" type="password" placeholder="Password" />
+                    <div className="main__form-field main__form-password">
+                        <input className="main__form-input" type="password" placeholder="Password" />
                         <img
-                            className="form__icon"
+                            className="main__form-icon"
                             src={hidePassword}
                             alt="a password hidden icon"
                         />
                     </div>
                     {!isSignin && (
-                        <div className="form__field form__password form__password-confirmation">
-                            <input className="form__input" type="password" placeholder="Confirm Password" />
+                        <div className="main__form-field main__form-password main__form-password-confirmation">
+                            <input className="main__form-input" type="password" placeholder="Confirm Password" />
                             <img
-                                className="form__icon"
+                                className="main__form-icon"
                                 src={hidePassword}
                                 alt="a password visible icon"
                             />
@@ -50,19 +50,19 @@ function Main({ route }: MainProps) {
                     )}
                 </div>
                 {isSignin && (
-                    <p className="form__link-password">Forgot Password?</p>)}
-                <button onClick={handleSubmit} className="form__submit">{isSignin ? "login" : "Register"}</button>
+                    <p className="main__form-link-password">Forgot Password?</p>)}
+                <button onClick={handleSubmit} className="main__form-submit">{isSignin ? "Login" : "Register"}</button>
             </form>
             <p className="main__link">
                 {isSignin ? (
                     <Link className="app-link" to={"/signup"}>
                         Not a member?{" "}
-                        <span className="main__link_redirect">Register Now</span>
+                        <span className="main__link-redirect">Register Now</span>
                     </Link>
                 ) : (
                     <Link className="app-link" to={"/signin"}>
                         A member?{" "}
-                        <span className="main__link_redirect">Login Now</span>
+                        <span className="main__link-redirect">Login Now</span>
                     </Link>
                 )}
             </p>

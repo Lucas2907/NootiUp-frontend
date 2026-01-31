@@ -22,34 +22,34 @@
   font-size: 3.1rem;
 }
 
-.modules {
+.main-page__modules {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 1.5rem;
 }
 
-.modules__texts {
+.main-page__modules-texts {
   padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.modules__texts-title {
+.main-page__modules-texts-title {
   opacity: 72%;
   font-size: 1.8rem;
   margin: 0;
 }
 
-.modules__texts-text {
+.main-page__modules-texts-text {
   color: #736eed;
   font-size: 1.3rem;
 
   margin: 0;
 }
 
-.modules__cards {
+.main-page__modules-cards {
   display: flex;
   width: 100%;
   gap: 3rem;
@@ -71,19 +71,19 @@
     padding: 0.4rem 0 1.6rem;
   }
 
-  .modules__texts {
+  .main-page__modules-texts {
     padding: 0;
   }
 
-  .modules__texts-title {
+  .main-page__modules-texts-title {
     font-size: 1.5rem;
   }
 
-  .modules__texts-text {
+  .main-page__modules-texts-text {
     font-size: 1.1rem;
   }
 
-  .modules__cards {
+  .main-page__modules-cards {
     gap: 1.4rem;
   }
 }
@@ -103,11 +103,11 @@
     padding-bottom: 2rem;
   }
 
-  .modules__texts {
+  .main-page__modules-texts {
     padding: 0 0.2rem;
   }
 
-  .modules__cards {
+  .main-page__modules-cards {
     gap: 2rem;
   }
 }

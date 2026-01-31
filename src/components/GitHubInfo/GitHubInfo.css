@@ -6,43 +6,44 @@
 }
 
 .github-container__text {
+  text-align: center;
   font-weight: 500;
   margin: 0;
 }
 
-.github-form {
+.github-container__form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.github-form__elements {
+.github-container__form-elements {
   display: flex;
   flex-direction: column;
 }
 
-.github-form__elements-label {
+.github-container__form-elements-label {
   margin: 3rem 0 0.3rem 0;
   font-weight: 700;
 }
 
-.github-form__input {
+.github-container__form-input {
   margin: 0;
   border: none;
   background-color: inherit;
   border-bottom: 2px solid black;
 }
 
-.github-form__input:focus {
+.github-container__form-input:focus {
   outline: none;
 }
 
-.github-form__input_error {
+.github-container__form-input_error {
   border-bottom: 2px solid #e60909;
 }
 
-.github-form__text {
+.github-container__form-text {
   margin: 0.3rem 0 0;
   font-size: 0.73rem;
   color: #e60909;
@@ -50,11 +51,11 @@
   visibility: hidden;
 }
 
-.github-form__text_error {
+.github-container__form-text_error {
   visibility: visible;
 }
 
-.github-form__submit {
+.github-container__form-submit {
   width: 60%;
   border-radius: 2rem;
   background-color: #000000;
@@ -64,7 +65,7 @@
   border: none;
 }
 
-.github-form__submit:hover {
+.github-container__form-submit:hover {
   opacity: 70%;
   cursor: pointer;
 }
@@ -78,11 +79,11 @@
   align-items: center;
 }
 
-.github-form__submit_disabled {
+.github-container__form-submit_disabled {
   background-color: #7c7979;
 }
 
-.github-form__submit_disabled:hover {
+.github-container__form-submit_disabled:hover {
   cursor: default;
   opacity: 100%;
 }
@@ -246,19 +247,19 @@
     font-size: 1.1rem;
   }
 
-  .github-form {
+  .github-container__form {
     width: 100%;
   }
 
-  .github-form__elements {
+  .github-container__form-elements {
     width: 100%;
   }
 
-  .github-form__input {
+  .github-container__form-input {
     font-size: 1rem;
   }
 
-  .github-form__submit {
+  .github-container__form-submit {
     width: 100%;
     font-size: 1.1rem;
     padding: 0.6rem 0;
