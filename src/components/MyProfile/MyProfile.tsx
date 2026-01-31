@@ -22,7 +22,7 @@ function MyProfile() {
                             <img
                                 className="my-profile__user-info-image"
                                 src={editProfile}
-                                alt=""
+                                alt="a profile user image to represent  account"
                                 aria-hidden="true"
                             />
                         </button>
