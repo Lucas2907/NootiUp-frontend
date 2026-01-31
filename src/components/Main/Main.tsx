@@ -28,10 +28,10 @@ function Main({ route }: MainProps) {
             <form className="form">
                 <div className="form__inputs">
                     <div className="form__field form__user">
-                        <input className="form__input" type="text" placeholder="Username" />
+                        <input className="form__input" type="email" placeholder="E-mail" />
                     </div>
                     <div className="form__field form__password">
-                        <input className="form__input" type="text" placeholder="Password" />
+                        <input className="form__input" type="password" placeholder="Password" />
                         <img
                             className="form__icon"
                             src={hidePassword}
@@ -40,7 +40,7 @@ function Main({ route }: MainProps) {
                     </div>
                     {!isSignin && (
                         <div className="form__field form__password form__password-confirmation">
-                            <input className="form__input" type="text" placeholder="Confirm Password" />
+                            <input className="form__input" type="password" placeholder="Confirm Password" />
                             <img
                                 className="form__icon"
                                 src={hidePassword}
