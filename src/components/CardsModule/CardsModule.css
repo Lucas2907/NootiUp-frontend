@@ -1,5 +1,5 @@
 .modules__card {
-  /* antes tinha min-width: 32.1rem; */
+
   width: 100%;
   display: flex;
   padding: 1.2rem;
@@ -85,7 +85,7 @@
   }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 590px) and (max-width: 768px) {
   .modules__card {
     padding: 1.1rem;
   }
