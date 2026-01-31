@@ -1,4 +1,4 @@
-.git-button {
+/* .git-button {
   color: white;
   background-color: black;
   display: flex;
@@ -21,7 +21,7 @@
   opacity: 90%;
 }
 
-.my-profile-addGit__text {
+.git-button__text {
   margin: 0;
   font-size: 1.3rem;
-}
+} */

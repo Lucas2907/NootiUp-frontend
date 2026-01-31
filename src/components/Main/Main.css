@@ -28,13 +28,13 @@
   font-size: 1.1rem;
 }
 
-.form__inputs {
+.main__form-inputs {
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
 }
 
-.form__field {
+.main__form-field {
   min-width: 30rem;
   display: flex;
   border: 2px solid rgb(88, 88, 88, 0.5);
@@ -43,7 +43,7 @@
   padding: 1rem 1.8rem;
 }
 
-.form__input {
+.main__form-input {
   width: 100%;
   display: flex;
   border: none;
@@ -52,34 +52,34 @@
   color: #585858;
 }
 
-.form__input:focus {
+.main__form-input:focus {
   outline: none;
 }
 
-.form__input::placeholder {
+.main__form-input::placeholder {
   color: #736eed;
 }
 
-.form__icon {
+.main__form-icon {
   max-width: 1.8rem;
 }
 
-.form__icon:hover {
+.main__form-icon:hover {
   cursor: pointer;
   opacity: 85%;
 }
 
-.form__icon:active {
+.main__form-icon:active {
   opacity: 70%;
 }
 
-.form__link-password {
+.main__form-link-password {
   padding-right: 1rem;
   margin: 0;
   text-align: right;
 }
 
-.form__submit {
+.main__form-submit {
   color: #fff;
   background-color: #736eed;
   padding: 1.3rem 0;
@@ -88,12 +88,12 @@
   font-size: 1.5rem;
 }
 
-.form__submit:hover {
+.main__form-submit:hover {
   cursor: pointer;
   opacity: 85%;
 }
 
-.form__submit:active {
+.main__form-submit:active {
   opacity: 70%;
 }
 
@@ -112,7 +112,7 @@
   opacity: 70%;
 }
 
-.main__link_redirect {
+.main__link-redirect {
   color: #736eed;
 }
 
@@ -136,25 +136,25 @@
     width: 100%;
   }
 
-  .form__inputs {
+  .main__form-inputs {
     gap: 1rem;
   }
 
-  .form__field {
+  .main__form-field {
     min-width: 100%;
     width: 100%;
     padding: 0.8rem 1.2rem;
   }
 
-  .form__input {
+  .main__form-input {
     font-size: 1rem;
   }
 
-  .form__icon {
+  .main__form-icon {
     max-width: 1.3rem;
   }
 
-  .form__submit {
+  .main__form-submit {
     width: 100%;
     font-size: 1.2rem;
     padding: 1rem 0;
@@ -171,7 +171,7 @@
     padding: 2rem 1.5rem;
   }
 
-  .form__field {
+  .main__form-field {
     min-width: 24rem;
   }
 

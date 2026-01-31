@@ -10,12 +10,12 @@ function MainPage() {
         <div className="main-page">
             <p className="main-page__presentation">Hi User</p>
             <h1 className="main-page__title">Escolha um Módulo</h1>
-            <div className="modules">
-                <div className="modules__texts">
-                    <h3 className="modules__texts-title">Programação</h3>
-                    <p className="modules__texts-text">view all</p>
+            <div className="main-page__modules">
+                <div className="main-page__modules-texts">
+                    <h3 className="main-page__modules-texts-title">Programação</h3>
+                    <p className="main-page__modules-texts-text">view all</p>
                 </div>
-                <div className="modules__cards">
+                <div className="main-page__modules-cards">
                     <CardsModule imageModule={htmlIcon} name="HTML" lessons={2} tasks={9} />
                     <CardsModule imageModule={cssIcon} name="CSS" lessons={4} tasks={5} />
                     <CardsModule imageModule={cssIcon} name="Math" lessons={2} tasks={8} />
