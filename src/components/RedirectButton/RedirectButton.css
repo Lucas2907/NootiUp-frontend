@@ -43,6 +43,7 @@
   background-color: #736eed;
   color: #f6f4f4;
   cursor: default;
+  outline: none;
 }
 
 .redirect-button__elements {
