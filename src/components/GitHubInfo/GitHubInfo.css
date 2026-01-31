@@ -94,9 +94,11 @@
 }
 
 .github-info__cards {
+  max-width: 90%;
   display: grid;
   gap: 2rem;
   grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   grid-template-areas:
     "basic stats location"
     "basic repos repos";
@@ -329,7 +331,7 @@
   }
 }
 
-@media (min-width: 481px) and (max-width: 1000px) {
+@media (min-width: 481px) and (max-width: 728px) {
   .github-container {
     padding: 2rem 2rem;
   }
@@ -351,7 +353,7 @@
       "location"
       "repos";
     gap: 1.5rem;
-    max-width: 600px;
+    max-width: 90%;
     margin: 0 auto;
   }
 
@@ -361,5 +363,16 @@
 
   .exit-git {
     font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 729px) and (max-width: 1100px) {
+  .github-info__cards {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+      "basic basic "
+      "stats location"
+      "repos repos";
+    gap: 1.8rem;
   }
 }
