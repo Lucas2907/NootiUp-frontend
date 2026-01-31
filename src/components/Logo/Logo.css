@@ -3,6 +3,11 @@
   font-size: 2.5rem;
   font-family: "Inter", sans-serif;
   font-weight: 600;
+  color: aliceblue;
+}
+
+.logo--black {
+  color: black;
 }
 
 @media (max-width: 480px) {

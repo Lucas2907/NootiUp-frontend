@@ -20,7 +20,7 @@ function Header() {
     if (isSignin || isSignup) {
         return (
             <header className="header">
-                <Logo />
+                <Logo isBlack={true} />
                 {isSignin && (
                     <Link to="/signup" className="app-link">
                         <RedirectButton text="Registrar" isLogged={false} />
@@ -40,7 +40,7 @@ function Header() {
     return (
         <header className="header">
             <Link className="app-link" to="/">
-                <Logo />
+                <Logo isBlack={true} />
             </Link>
 
 

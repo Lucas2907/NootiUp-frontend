@@ -14,7 +14,18 @@ function MyProfile() {
                 <div className="my-profile__user-data">
                     <div className="my-profile__user-info-data">
                         <h2 className="my-profile__user-info-name">User</h2>
-                        <img className="my-profile__user-info-image" src={editProfile} alt="a profile edit icon" />
+                        <button
+                            type="button"
+                            className="my-profile__edit-button"
+                            aria-label="edit profile"
+                        >
+                            <img
+                                className="my-profile__user-info-image"
+                                src={editProfile}
+                                alt=""
+                                aria-hidden="true"
+                            />
+                        </button>
                     </div>
                     <p className="my-profile__user-about">Web Developer</p>
                 </div>
@@ -24,7 +35,7 @@ function MyProfile() {
                 <p className="my-profile__email-text"> lucas@gmail.com</p>
             </div>
             <p className="my-profile__text">Entrou em 18/01/2025</p>
-            <Link to={"/signin"} className="app-link my-profile__exit-link"><button className="my-profile__button my-profile__exit">Sair</button></Link >
+            <Link to={"/signin"} className="app-link my-profile__exit-link my-profile__button my-profile__exit">Sair</Link >
         </div >
     )
 }

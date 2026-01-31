@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import hidePassword from "../../assets/images/hide-password.png"
+import hidenPassword from "../../assets/images/password-hidden.svg"
+import visiblePassword from "../../assets/images/password-visible.svg"
+import { useState } from "react";
 
 
 
@@ -8,10 +10,10 @@ type MainProps = {
 }
 
 function Main({ route }: MainProps) {
-
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
     const navigate = useNavigate()
 
-    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         return isSignin ? navigate("/", { replace: true }) : navigate("/signin")
 
@@ -19,39 +21,64 @@ function Main({ route }: MainProps) {
 
     const isSignin = route === "signin"
 
+    const togglePasswordVisible = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
+
+
     return (
         <div className="main">
             <h1 className="main__title">{isSignin ? "Welcome Back!" : "Welcome to NootUp!"}</h1>
             <p className="main__description">
                 {isSignin ? "Aprender é revigorante e ter você conosco novamente nos revigora da mesma forma" : "Seja bem vindo ao NootUp, onde seu aprendizado não tem limites"}
             </p>
-            <form className="form">
+            <form className="main__form" onSubmit={handleSubmit}>
                 <div className="main__form-inputs">
-                    <div className="main__form-field main__form-email">
-                        <input className="main__form-input" type="email" placeholder="E-mail" />
+                    <div>
+                        <label className="main__form-label" htmlFor="email"> E-mail </label>
+                        <div className="main__form-field main__form-email">
+
+
+                            <input id="email" className="main__form-input" type="email" />
+
+                        </div>
                     </div>
-                    <div className="main__form-field main__form-password">
-                        <input className="main__form-input" type="password" placeholder="Password" />
-                        <img
-                            className="main__form-icon"
-                            src={hidePassword}
-                            alt="a password hidden icon"
-                        />
+                    <div>
+                        <label className="main__form-label" htmlFor="password" >Password</label>
+                        <div className="main__form-field main__form-password">
+
+
+                            <input id="password" className="main__form-input" type={isPasswordVisible ? "text" : "password"} />
+
+                            <button
+                                type="button"
+                                className="main__form-icon-button"
+                                aria-pressed={isPasswordVisible}
+                                aria-label={isPasswordVisible ? "Hide password " : "Show password"}
+                                onClick={togglePasswordVisible}
+                            >
+                                <img
+                                    className="main__form-icon"
+                                    src={isPasswordVisible ? visiblePassword : hidenPassword}
+                                    alt=""
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </div>
                     </div>
                     {!isSignin && (
-                        <div className="main__form-field main__form-password main__form-password-confirmation">
-                            <input className="main__form-input" type="password" placeholder="Confirm Password" />
-                            <img
-                                className="main__form-icon"
-                                src={hidePassword}
-                                alt="a password visible icon"
-                            />
+                        <div>
+                            <label className="main__form-label" htmlFor="confirm-password">Confirm Password</label>
+                            <div className="main__form-field main__form-password main__form-password-confirmation">
+
+                                <input id="confirm-password" className="main__form-input" type="password" />
+                            </div>
                         </div>
                     )}
+                    {isSignin && (
+                        <p className="main__form-link-password">Forgot Password?</p>)}
+                    <button type="submit" className="main__form-submit">{isSignin ? "Login" : "Register"}</button>
                 </div>
-                {isSignin && (
-                    <p className="main__form-link-password">Forgot Password?</p>)}
-                <button onClick={handleSubmit} className="main__form-submit">{isSignin ? "Login" : "Register"}</button>
             </form>
             <p className="main__link">
                 {isSignin ? (
