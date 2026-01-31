@@ -106,9 +106,12 @@
   grid-area: sair;
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-width: 9.8rem;
+  margin-left: auto;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 480px) {
   .my-profile {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -118,7 +121,7 @@
       "sair";
     padding: 1.5rem 1rem;
     row-gap: 1rem;
-    justify-content: center;
+    place-items: center;
   }
 
   .my-profile__user-image {
@@ -161,7 +164,6 @@
 
   .my-profile-text {
     font-size: 1rem;
-    text-align: center;
   }
 
   .my-profile__button {
@@ -169,14 +171,19 @@
     padding: 0.9rem 1.2rem;
     max-width: 50%;
   }
+
+  .my-profile-exit_link {
+    max-width: 100%;
+  }
 }
 
-@media (min-width: 481px) and (max-width: 1000px) {
+@media (min-width: 481px) and (max-width: 728px) {
   .my-profile {
     padding: 1.5rem 2rem;
     grid-template-areas:
-      "user user email"
-      "data data sair";
+      "user user "
+      "email sair"
+      "data data";
   }
 
   .my-profile__user-image {
@@ -202,7 +209,23 @@
   }
 
   .my-profile-text {
-    font-size: 1.2rem;
-    text-align: right;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .my-profile-exit {
+    padding: 0.5rem 2rem;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 729px) and (max-width: 1100px) {
+  .my-profile {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+      "user user "
+      "email sair"
+      "data data";
+    gap: 1.8rem;
   }
 }
