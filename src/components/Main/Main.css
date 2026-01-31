@@ -79,15 +79,6 @@
   text-align: right;
 }
 
-.form__link-password:hover {
-  cursor: pointer;
-  opacity: 85%;
-}
-
-.form__link-password:active {
-  opacity: 75%;
-}
-
 .form__submit {
   color: #fff;
   background-color: #736eed;
@@ -125,7 +116,7 @@
   color: #736eed;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 481px) {
   .main {
     padding: 1.5rem 1rem;
   }
@@ -175,7 +166,7 @@
   }
 }
 
-@media (min-width: 590px) and (max-width: 1000px) {
+@media (min-width: 481px) and (max-width: 1000px) {
   .main {
     padding: 2rem 1.5rem;
   }

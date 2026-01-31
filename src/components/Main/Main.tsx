@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import hidePassword from "../../assets/images/hide-password.png"
+
 
 
 type MainProps = {
     route: "signin" | "signup"
 }
 
-
 function Main({ route }: MainProps) {
+
+    const navigate = useNavigate()
+
+    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        return isSignin ? navigate("/", { replace: true }) : navigate("/signin")
+
+    };
 
     const isSignin = route === "signin"
 
@@ -43,7 +51,7 @@ function Main({ route }: MainProps) {
                 </div>
                 {isSignin && (
                     <p className="form__link-password">Forgot Password?</p>)}
-                <button className="form__submit">{isSignin ? "Login" : "Register"}</button>
+                <button onClick={handleSubmit} className="form__submit">{isSignin ? "login" : "Register"}</button>
             </form>
             <p className="main__link">
                 {isSignin ? (
