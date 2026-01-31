@@ -49,6 +49,10 @@
   padding: 1rem 1.8rem;
 }
 
+.main__form-field:focus-within {
+  border-color: #736eed;
+}
+
 .main__form-input {
   width: 100%;
   display: flex;
@@ -63,7 +67,7 @@
 }
 
 .main__form-input::placeholder {
-  color: #736eed;
+  color: #949292;
 }
 
 .main__form-icon-button {
@@ -163,6 +167,7 @@
   .main__form-input {
     font-size: 1rem;
   }
+
 
   .main__form-icon {
     max-width: 1.3rem;
