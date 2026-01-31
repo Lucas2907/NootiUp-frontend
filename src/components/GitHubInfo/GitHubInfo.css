@@ -329,7 +329,7 @@
   }
 }
 
-@media (min-width: 590px) and (max-width: 1000px) {
+@media (min-width: 481px) and (max-width: 1000px) {
   .github-container {
     padding: 2rem 2rem;
   }

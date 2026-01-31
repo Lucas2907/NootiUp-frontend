@@ -20,7 +20,7 @@ function MyProgress() {
                     </div>
                     <div className="my-progress__profile-stats-item ">
                         <p className="my-progress__profile-stats-number">5</p>
-                        <p className="my-progress__profile-stats-text">Em andamento</p>
+                        <p className="my-progress__profile-stats-text">A fazer</p>
                     </div>
                     <div className="my-progress__profile-stats-item ">
                         <p className="my-progress__profile-stats-number">1</p>

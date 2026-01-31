@@ -1,5 +1,9 @@
+.modules__cards {
+  width: 100%;
+}
+
 .modules__card {
-  width: 45%;
+  min-width: 45%;
   display: flex;
   padding: 1.2rem;
   background-color: #fff;
@@ -86,7 +90,6 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
   .modules__cards {
-    width: 90%;
     display: flex;
     flex-direction: column;
   }

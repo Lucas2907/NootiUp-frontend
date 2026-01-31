@@ -136,7 +136,7 @@
   }
 }
 
-@media (min-width: 590px) and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .my-progress {
     width: 95%;
     padding: 2rem 1.5rem;
@@ -150,5 +150,9 @@
   .my-progress__recent-items {
     max-width: 95%;
     padding: 2rem 2.5rem;
+  }
+
+  .my-progress__profile-stats-text {
+    font-size: 1rem;
   }
 }
