@@ -1,0 +1,79 @@
+.popup-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+}
+
+.popup-profile__title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.popup-profile__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.4rem;
+  gap: 1rem;
+  min-width: 100%;
+}
+
+.popup-profile__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 90%;
+}
+
+.popup-profile__label {
+  margin: 0 auto 0 0.5rem;
+  font-size: 1rem;
+  color: #736eed;
+}
+
+.popup-profile__container {
+  padding: 0.4rem 0.5rem;
+  border: 1.5px solid #736eed;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+
+.popup-profile__input {
+  border: none;
+}
+
+.popup-profile__input:focus {
+  outline: none;
+}
+
+.popup-profile__error {
+  font-size: 0.9rem;
+  color: #ff4b4b;
+}
+
+.popup-profile__error--input {
+  margin: 0.1rem auto 0 0.5rem;
+}
+
+.popup-profile__error--submit {
+  margin: 0;
+  text-align: center;
+}
+
+.popup-profile__submit-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 90%;
+}
+
+.popup-profile__submit-button {
+  width: 70%;
+  background-color: #736eed;
+  border: none;
+  padding: 0.7rem 0;
+  border-radius: 50px;
+  color: aliceblue;
+}
