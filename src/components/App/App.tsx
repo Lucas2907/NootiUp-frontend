@@ -10,10 +10,6 @@ import GitHubInfo from "../GitHubInfo/GitHubInfo"
 
 function App() {
 
-
-
-
-
   return (
     <Routes>
       <Route element={<Layout />}>

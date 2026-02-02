@@ -2,10 +2,15 @@
 import editProfile from "../../assets/images/edit-profile.png"
 import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
-
+import Popup from "../Popup/Popup"
+import { useState } from "react"
 
 function MyProfile() {
 
+    const [isPopupOpened, setIsPopupOpened] = useState(false)
+
+    const openPopup = () => setIsPopupOpened(true)
+    const closePopup = () => setIsPopupOpened(false)
 
     return (
         <div className="my-profile">
@@ -18,6 +23,7 @@ function MyProfile() {
                             type="button"
                             className="my-profile__edit-button"
                             aria-label="edit profile"
+                            onClick={openPopup}
                         >
                             <img
                                 className="my-profile__user-info-image"
@@ -36,7 +42,9 @@ function MyProfile() {
             </div>
             <p className="my-profile__text">Entrou em 18/01/2025</p>
             <Link to={"/signin"} className="app-link my-profile__exit-link my-profile__button my-profile__exit">Sair</Link >
+            {isPopupOpened && <Popup onClose={closePopup} />}
         </div >
+
     )
 }
 

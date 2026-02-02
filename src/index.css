@@ -14,3 +14,5 @@
 @import url(./components/GitHubInfo/GitHubInfo.css);
 @import url(./components/GitHubAuthPage/GitHubAuthPage.css);
 @import url(./components/ButtonGitHub/ButtonGitHub.css);
+@import url(./components/Popup/Popup.css);
+@import url(./components/Popup/PopupProfile/PopupProfile.css);
