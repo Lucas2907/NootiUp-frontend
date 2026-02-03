@@ -28,7 +28,7 @@ function Popup({ onClose }: PopupProps) {
                 <button onClick={onClose} type="button" className="popup__close-button">
                     <img className="popup__close-icon" src={closeButton} alt="close button icon" />
                 </button>
-                <PopupProfile />
+                <PopupProfile onClose={onClose} />
             </div>
         </div>
 
