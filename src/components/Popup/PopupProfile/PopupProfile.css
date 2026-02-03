@@ -41,6 +41,7 @@
 
 .popup-profile__input {
   border: none;
+  width: 100%;
 }
 
 .popup-profile__input:focus {
