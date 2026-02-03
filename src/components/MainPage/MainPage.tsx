@@ -4,11 +4,15 @@ import cssIcon from "../../assets/images/css-icon.png"
 
 //import components
 import CardsModule from "../CardsModule/CardsModule"
+import { useCurrentUser } from "../../contexts/userContext"
+
 
 function MainPage() {
+    const { username } = useCurrentUser()
+
     return (
         <div className="main-page">
-            <p className="main-page__presentation">Hi User</p>
+            <p className="main-page__presentation">Hi {username}</p>
             <h1 className="main-page__title">Escolha um Módulo</h1>
             <div className="main-page__modules">
                 <div className="main-page__modules-texts">
