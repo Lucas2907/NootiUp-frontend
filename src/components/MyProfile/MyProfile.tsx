@@ -4,9 +4,11 @@ import profileImage from "../../assets/images/profile-example.jpg"
 import { Link } from "react-router-dom"
 import Popup from "../Popup/Popup"
 import { useState } from "react"
+import { useCurrentUser } from "../../contexts/userContext"
 
 function MyProfile() {
 
+    const { username, profession } = useCurrentUser()
     const [isPopupOpened, setIsPopupOpened] = useState(false)
 
     const openPopup = () => setIsPopupOpened(true)
@@ -18,7 +20,7 @@ function MyProfile() {
                 <img className="my-profile__user-image" src={profileImage} alt="profile image icon" />
                 <div className="my-profile__user-data">
                     <div className="my-profile__user-info-data">
-                        <h2 className="my-profile__user-info-name">User</h2>
+                        <h2 className="my-profile__user-info-name">{username}</h2>
                         <button
                             type="button"
                             className="my-profile__edit-button"
@@ -33,7 +35,7 @@ function MyProfile() {
                             />
                         </button>
                     </div>
-                    <p className="my-profile__user-about">Web Developer</p>
+                    <p className="my-profile__user-about">{profession}</p>
                 </div>
             </div>
             <div className="my-profile__email">
