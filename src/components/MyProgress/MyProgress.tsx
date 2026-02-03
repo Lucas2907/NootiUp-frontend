@@ -8,11 +8,14 @@ import CardsModule from "../CardsModule/CardsModule"
 import InfoUser from "../InfoUser/InfoUser"
 
 function MyProgress() {
+
+
+
     return (
         <div className="my-progress">
             <h1 className="my-progress__title">Meu Progresso</h1>
             <div className="my-progress__profile">
-                <InfoUser profileImage={profileImage} name="User" about="Web Developer"></InfoUser>
+                <InfoUser profileImage={profileImage}></InfoUser>
                 <div className="my-progress__profile-stats">
                     <div className="my-progress__profile-stats-item ">
                         <p className="my-progress__profile-stats-number">2</p>

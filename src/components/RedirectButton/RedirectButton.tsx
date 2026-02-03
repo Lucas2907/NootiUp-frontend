@@ -1,18 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { useCurrentUser } from '../../contexts/userContext';
 
 
 type RedirectButtonProps = {
-    text: string
     isLogged: boolean
 
 }
 
-function RedirectButton({ text, isLogged }: RedirectButtonProps) {
+function RedirectButton({ isLogged }: RedirectButtonProps) {
+
+    const { username } = useCurrentUser()
+
     return (
         <button className="redirect-button">
             <div className='redirect-button__elements'>
-                <p className="redirect-button__elements-button">{text}</p>
+                <p className="redirect-button__elements-button">{username}</p>
                 {
                     isLogged ? (
                         <FontAwesomeIcon icon={faUser} className="redirect-button__elements-image" />
