@@ -7,10 +7,10 @@ interface PopupProfileProps {
 
 function PopupProfile({ onClose }: PopupProfileProps) {
 
-    const { setUser } = useCurrentUser()
+    const { setUser, username, profession } = useCurrentUser()
 
-    const [username, setUsername] = useState("");
-    const [profession, setProfession] = useState("");
+    const [usernameInput, setUsername] = useState(username);
+    const [professionInput, setProfession] = useState(profession);
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -18,8 +18,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
 
         setUser(prev => ({
             ...prev,
-            username,
-            profession,
+            username: usernameInput,
+            profession: professionInput,
         }));
         onClose();
 
@@ -33,14 +33,14 @@ function PopupProfile({ onClose }: PopupProfileProps) {
                 <div className="popup-profile__items">
                     <label className="popup-profile__label" htmlFor="username">Username</label>
                     <div className="popup-profile__container">
-                        <input className="popup-profile__input" id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                        <input className="popup-profile__input" id="username" type="text" value={usernameInput} onChange={e => setUsername(e.target.value)} />
                     </div>
                     <p className="popup-profile__error popup-profile__error--input">min 3 characters</p>
                 </div>
                 <div className="popup-profile__items">
                     <label className="popup-profile__label" htmlFor="profession">Profession</label>
                     <div className="popup-profile__container">
-                        <input className="popup-profile__input" id="profession" type="text" value={profession} onChange={e => setProfession(e.target.value)} />
+                        <input className="popup-profile__input" id="profession" type="text" value={professionInput} onChange={e => setProfession(e.target.value)} />
                     </div>
                     <p className="popup-profile__error popup-profile__error--input">min 5 characters</p>
                 </div>
