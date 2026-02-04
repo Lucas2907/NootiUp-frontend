@@ -6,7 +6,7 @@ import Layout from "../Layout/Layout"
 import MyProfile from "../MyProfile/MyProfile"
 import Preloader from "../Preloader/Preloader"
 import GitHubInfo from "../GitHubInfo/GitHubInfo"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CurrentUserContext from "../../contexts/userContext";
 import type { CurrentUserContextType } from "../../contexts/userContext";
 
@@ -14,11 +14,22 @@ import type { CurrentUserContextType } from "../../contexts/userContext";
 
 function App() {
 
-  const [user, setUser] = useState<CurrentUserContextType>({
-    username: "Lucas",
-    profession: "Desenvolvedor web",
-  })
+  const [user, setUser] = useState<CurrentUserContextType>(() => {
+    const saved = localStorage.getItem("currentUser");
+    if (saved) {
+      return JSON.parse(saved) as CurrentUserContextType;
+    }
+    return {
+      username: "User",
+      profession: "Not defined",
+    };
+  });
 
+  useEffect(() => {
+    localStorage.setItem("currentUser", JSON.stringify(user));
+  }, [user]);
+
+  
   return (
     <CurrentUserContext.Provider value={{
       ...user, setUser
