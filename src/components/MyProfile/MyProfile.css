@@ -47,6 +47,7 @@
 
 .my-profile__edit-button:focus {
   outline: none;
+  opacity: 70%;
 }
 
 .my-profile__user-about {

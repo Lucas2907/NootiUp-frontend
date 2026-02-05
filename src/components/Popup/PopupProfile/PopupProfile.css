@@ -55,6 +55,7 @@
 
 .popup-profile__input:focus {
   outline: none;
+  opacity: 70%;
 }
 
 .popup-profile__error {
@@ -98,10 +99,20 @@
   color: aliceblue;
 }
 
+.popup-profile__submit-button:focus {
+  outline: none;
+  opacity: 70%;
+}
+
 .popup-profile__submit-button-disabled {
   background-color: #7c7979;
 }
 
 .popup-profile__submit-button-disabled:hover {
   cursor: normal;
+}
+
+.popup-profile__submit-button:focus {
+  outline: none;
+  opacity: 70%;
 }
