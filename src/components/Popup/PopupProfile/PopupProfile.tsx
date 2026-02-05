@@ -1,5 +1,6 @@
 import { useCurrentUser } from "../../../contexts/userContext"
-import { useState } from "react";
+import { useForm, useWatch } from "react-hook-form"
+import { DevTool } from "@hookform/devtools"
 
 interface PopupProfileProps {
     onClose: () => void;
@@ -9,47 +10,81 @@ function PopupProfile({ onClose }: PopupProfileProps) {
 
     const { setUser, username, profession } = useCurrentUser()
 
-    const [usernameInput, setUsername] = useState(username);
-    const [professionInput, setProfession] = useState(profession);
+    type FormValues = {
+        username: string
+        profession: string
+    }
 
-    function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        if (!setUser) return;
+    const form = useForm<FormValues>({
+        defaultValues: {
+            username,
+            profession
+        },
+    })
 
+    const { register, control, handleSubmit, formState } = form
+
+    const { errors } = formState
+
+    const currentUsername = useWatch({ control, name: "username" })
+    const currentProfession = useWatch({ control, name: "profession" })
+
+    const hasChanges = currentUsername !== username || currentProfession !== profession
+
+    const onSubmit = (data: FormValues) => {
+        if (!setUser) return
         setUser(prev => ({
             ...prev,
-            username: usernameInput,
-            profession: professionInput,
-        }));
-        onClose();
-
+            username: data.username,
+            profession: data.profession
+        }))
+        onClose()
     }
 
     return (
         <div className="popup-profile">
             <h2 className="popup-profile__title">Edit Profile</h2>
-            <form className="popup-profile__form" onSubmit={handleSubmit}>
+            <form className="popup-profile__form" onSubmit={handleSubmit(onSubmit)} noValidate>
 
                 <div className="popup-profile__items">
                     <label className="popup-profile__label" htmlFor="username">Username</label>
                     <div className="popup-profile__container">
-                        <input className="popup-profile__input" id="username" type="text" value={usernameInput} onChange={e => setUsername(e.target.value)} />
+                        <input className="popup-profile__input" id="username" type="text"
+                            {...register("username", {
+                                required: {
+                                    value: true,
+                                    message: "Insira um nome de usuário"
+
+                                },
+                            })} />
                     </div>
-                    <p className="popup-profile__error popup-profile__error--input">min 3 characters</p>
+                    <p className={`popup-profile__error ${errors.username?.message ? "popup-profile__error-input--visible" : "popup-profile__error-input"}`}>{errors.username?.message}</p>
                 </div>
                 <div className="popup-profile__items">
                     <label className="popup-profile__label" htmlFor="profession">Profession</label>
                     <div className="popup-profile__container">
-                        <input className="popup-profile__input" id="profession" type="text" value={professionInput} onChange={e => setProfession(e.target.value)} />
+                        <input className="popup-profile__input" id="profession" type="text"
+                            {...register("profession", {
+                                required: {
+                                    value: true,
+                                    message: "Insira uma profissão"
+                                },
+                            }
+                            )} />
                     </div>
-                    <p className="popup-profile__error popup-profile__error--input">min 5 characters</p>
+                    <p className={`popup-profile__error ${errors.username?.message ? "p opup-profile__error-input--visible" : "popup-profile__error-input"}`}>{errors.profession?.message}</p>
                 </div>
                 <div className="popup-profile__submit-items">
-                    <button type="submit" className="popup-profile__submit-button">Submit</button>
-                    <p className="popup-profile__error popup-profile__error--submit">change your info to submit</p>
+                    <button disabled={!hasChanges} type="submit"
+                        className={`popup-profile__submit-button ${!hasChanges ? 'popup-profile__submit-button-disabled' : ''}`}>Submit</button>
+                    <p className={`popup-profile__error ${hasChanges ? "popup-profile__error-submit" : "popup-profile__error-submit--visible"}`}>
+                        change your info to submit
+                    </p>
+
                 </div>
-            </form>
-        </div>
+            </form >
+            <DevTool control={control} />
+        </div >
     )
 }
 
