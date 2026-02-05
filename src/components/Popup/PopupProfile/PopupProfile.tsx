@@ -20,6 +20,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
             username,
             profession
         },
+        mode: "onChange",
+        reValidateMode: "onChange"
     })
 
     const { register, control, handleSubmit, formState } = form
