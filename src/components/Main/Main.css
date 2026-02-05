@@ -64,6 +64,7 @@
 
 .main__form-input:focus {
   outline: none;
+  opacity: 70%;
 }
 
 .main__form-input::placeholder {
@@ -167,7 +168,6 @@
   .main__form-input {
     font-size: 1rem;
   }
-
 
   .main__form-icon {
     max-width: 1.3rem;

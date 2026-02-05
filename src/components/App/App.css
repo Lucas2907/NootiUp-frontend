@@ -5,4 +5,5 @@
 
 .app-link:focus {
   outline: none;
+  opacity: 70%;
 }
