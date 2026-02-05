@@ -51,15 +51,26 @@
 .popup-profile__error {
   font-size: 0.9rem;
   color: #ff4b4b;
-}
-
-.popup-profile__error--input {
   margin: 0.1rem auto 0 0.5rem;
+  min-height: 1.1rem;
 }
 
-.popup-profile__error--submit {
+.popup-profile__error-input {
+  visibility: hidden;
+}
+
+.popup-profile__error-input--visible {
+  visibility: visible;
+}
+
+.popup-profile__error-submit {
+  height: 1rem;
+  visibility: hidden;
+}
+
+.popup-profile__error-submit--visible {
   margin: 0;
-  text-align: center;
+  visibility: visible;
 }
 
 .popup-profile__submit-items {
@@ -77,4 +88,12 @@
   padding: 0.7rem 0;
   border-radius: 50px;
   color: aliceblue;
+}
+
+.popup-profile__submit-button-disabled {
+  background-color: #7c7979;
+}
+
+.popup-profile__submit-button-disabled:hover {
+  cursor: normal;
 }
