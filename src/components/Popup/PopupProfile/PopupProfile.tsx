@@ -1,6 +1,5 @@
 import { useCurrentUser } from "../../../contexts/userContext"
 import { useForm, useWatch } from "react-hook-form"
-import { DevTool } from "@hookform/devtools"
 
 interface PopupProfileProps {
     onClose: () => void;
@@ -99,10 +98,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
                     <p className={`popup-profile__error ${hasChanges ? "popup-profile__error-submit" : "popup-profile__error-submit--visible"}`}>
                         Mude alguma informação
                     </p>
-
                 </div>
             </form >
-            <DevTool control={control} />
         </div >
     )
 }
