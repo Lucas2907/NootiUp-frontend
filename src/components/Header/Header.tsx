@@ -23,12 +23,12 @@ function Header() {
                 <Logo isBlack={true} />
                 {isSignin && (
                     <Link to="/signup" className="app-link">
-                        <RedirectButton  isLogged={false} />
+                        <RedirectButton text="Registrar" isLogged={false} />
                     </Link>
                 )}
                 {isSignup && (
                     <Link to="/signin" className="app-link">
-                        <RedirectButton  isLogged={false} />
+                        <RedirectButton text="Entrar" isLogged={false} />
                     </Link>
                 )}
             </header>
@@ -59,7 +59,7 @@ function Header() {
                 to="/my-profile"
                 className="app-link"
             >
-                <RedirectButton  isLogged={true} />
+                <RedirectButton text="" isLogged={true} />
             </NavLink>
 
             <div className="header__mobile">

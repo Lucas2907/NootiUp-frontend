@@ -1,5 +1,5 @@
 .redirect-button {
-  max-width: 12rem;
+  max-width: 13rem;
   font-size: 1.5rem;
   border-radius: 3.1rem;
   padding: 1.2rem 2.1rem;
@@ -53,6 +53,13 @@
   gap: 0.8rem;
 }
 
+.redirect-button__elements--logged {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
 .redirect-button__elements-button {
   overflow: hidden;
   white-space: nowrap;
@@ -68,7 +75,7 @@
 @media (max-width: 480px) {
   .redirect-button {
     min-width: auto;
-    max-width: 8.5rem;
+    max-width: 10rem;
     padding: 0.8rem 1.2rem;
     font-size: 1rem;
   }
@@ -85,7 +92,7 @@
 
 @media (min-width: 481px) and (max-width: 1000px) {
   .redirect-button {
-    max-width: 10rem;
+    max-width: 12rem;
     font-size: 1.2rem;
     padding: 0.7rem 1dvh;
     display: flex;

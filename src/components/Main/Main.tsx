@@ -40,7 +40,7 @@ function Main({ route }: MainProps) {
 
     const watchedPassword = useWatch({ control, name: "password" })
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = () => {
         if (isSignin) {
             navigate("/", { replace: true })
         } else {
@@ -189,13 +189,13 @@ function Main({ route }: MainProps) {
             <p className="main__link">
                 {isSignin ? (
                     <Link className="app-link" to={"/signup"}>
-                        Not a member?{" "}
-                        <span className="main__link-redirect">Register Now</span>
+                        Ainda não tem cadastro?{" "}
+                        <span className="main__link-redirect">Registre</span>
                     </Link>
                 ) : (
                     <Link className="app-link" to={"/signin"}>
-                        A member?{" "}
-                        <span className="main__link-redirect">Login Now</span>
+                        Já tem cadastro?{" "}
+                        <span className="main__link-redirect">Entre</span>
                     </Link>
                 )}
             </p>
