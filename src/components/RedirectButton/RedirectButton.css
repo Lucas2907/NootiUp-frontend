@@ -56,8 +56,6 @@
 .redirect-button__elements--logged {
   display: flex;
   gap: 0.6rem;
-  padding: 0 1rem;
-  box-sizing: border-box;
 }
 
 .redirect-button__elements-button {
