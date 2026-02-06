@@ -7,6 +7,13 @@ import CardsModule from "../CardsModule/CardsModule"
 import { useCurrentUser } from "../../contexts/userContext"
 
 
+const modules = [
+    { id: "html", imageModule: htmlIcon, name: "HTML", lessons: 2, tasks: 9 },
+    { id: "css", imageModule: cssIcon, name: "CSS", lessons: 4, tasks: 5 },
+    { id: "algorithm", imageModule: cssIcon, name: "Math", lessons: 1, tasks: 8 },
+    { id: "math", imageModule: cssIcon, name: "Algorithm", lessons: 5, tasks: 3 }
+]
+
 function MainPage() {
     const { username } = useCurrentUser()
 
@@ -20,9 +27,15 @@ function MainPage() {
                     <p className="main-page__modules-texts-text">view all</p>
                 </div>
                 <div className="main-page__modules-cards">
-                    <CardsModule imageModule={htmlIcon} name="HTML" lessons={2} tasks={9} />
-                    <CardsModule imageModule={cssIcon} name="CSS" lessons={4} tasks={5} />
-                    <CardsModule imageModule={cssIcon} name="Math" lessons={2} tasks={8} />
+                    {modules.map((module) => (
+                        <CardsModule
+                            key={module.id}
+                            imageModule={module.imageModule}
+                            name={module.name}
+                            lessons={module.lessons}
+                            tasks={module.tasks}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
