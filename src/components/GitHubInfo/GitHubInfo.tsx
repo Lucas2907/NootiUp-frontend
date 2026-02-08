@@ -1,100 +1,71 @@
-import socialIcon from "../../assets/images/social.png"
-import worldIcon from "../../assets/images/world.png"
-import apiGit from "../../utils/GitHubApi"
-import { useState } from "react"
-import Preloader from "../Preloader/Preloader"
+import socialIcon from "../../assets/images/social.png";
+import worldIcon from "../../assets/images/world.png";
+import { useState, useEffect } from "react";
+import Preloader from "../Preloader/Preloader";
+import ButtonGitHub from "../ButtonGitHub/ButtonGitHub"
+
+interface UserInfo {
+    avatar_url?: string;
+    name?: string;
+    bio?: string;
+    followers?: number;
+    following?: number;
+    location?: string;
+    public_repos?: number;
+    [key: string]: unknown;
+} 
 
 function GitHubInfo() {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
-    interface UserInfo {
-        [key: string]: string;
-    }
-
-    const [user, setUser] = useState<string>("")
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isError, setIsError] = useState<boolean>(false)
-    const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
+    useEffect(() => {
         const savedUser = localStorage.getItem("user");
-        if (!savedUser) return null;
+        if (!savedUser) {
+            setUserInfo(null);
+            setIsLoading(false);
+            return;
+        }
+
         try {
             const parsed = JSON.parse(savedUser);
-            if (parsed.id) {
-                return parsed
-
+            if (parsed && parsed.id) {
+                setUserInfo(parsed);
+            } else {
+                setUserInfo(null);
             }
-            return null;
         } catch {
-            return null;
-        }
-    });
-
-    function removeAcess() {
-        localStorage.removeItem("user")
-        setUserInfo(null)
-        setUser("")
-        window.location.reload()
-
-    }
-
-    async function showCurrentUser(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        setIsError(false)
-        setIsLoading(true)
-        try {
-            if (user) {
-                const currentUser = await apiGit.getInfo(user)
-                if (!currentUser.message) {
-                    setUserInfo(currentUser)
-                    localStorage.setItem("user", JSON.stringify(currentUser))
-                }
-                if (currentUser.status == "404") {
-                    setIsError(true)
-                }
-            }
-        } catch (error) {
-            console.log("erro", error)
+            setUserInfo(null);
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
-    }
-    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUser(e.target.value);
-        setIsError(false);
+    }, []);
+
+    function removeAccess() {
+        localStorage.removeItem("user");
+        setUserInfo(null);
+        window.location.reload();
     }
 
     if (isLoading) {
-        return (
-            <Preloader />
-        )
+        return <Preloader />;
     }
-
 
     if (!userInfo) {
         return (
-
             <div className="github-container">
-                <h2 className="github-container__text">Entre com GitHub para exibir suas informações</h2>
-                <form className="github-container__form" onSubmit={showCurrentUser} >
-                    <div className="github-container__form-elements">
-                        <label className="github-container__form-elements-label" htmlFor="git-input">Username:</label>
-                        <input onChange={handleChangeInput} value={user} className={`github-container__form-input ${isError ? "github-container__form-input_error" : ""}`} id="git-input" placeholder="Lucas2907" />
-                        <p className={`github-container__form-text ${isError ? "github-container__form-text_error" : ""}`}>usuário não encontrado</p>
-                    </div>
-                    <button
-                        type="submit"
-                        disabled={isError || !user}
-                        className={`github-container__form-submit ${isError || !user ? "github-container__form-submit_disabled" : ""
-                            }`}
-                    >
-                        Entrar
-                    </button>
-
-                </form>
+                <h2 className="github-container__text">
+                    Conecte sua conta GitHub para exibir suas informações
+                </h2>
+                <p className="github-container__form-text">
+                    Use o botão &quot;Login com GitHub&quot; para conectar sua conta.
+                </p>
+                <ButtonGitHub />
             </div>
-        )
+        );
     }
-    return (
 
+    return (
         <div className="github-info">
             <h1 className="github-info__title">Informações da sua conta GitHub</h1>
 
@@ -109,9 +80,11 @@ function GitHubInfo() {
                         alt="avatar user info"
                         className="github-info__basic-profile-image"
                     />
-                    <h3 className="github-info__basic-username">{userInfo.name}</h3>
+                    <h3 className="github-info__basic-username">
+                        {userInfo.name || "Sem nome"}
+                    </h3>
                     <p className="github-info__basic-biography">
-                        {userInfo.bio}
+                        {userInfo.bio || "Sem bio"}
                     </p>
                 </div>
 
@@ -124,12 +97,16 @@ function GitHubInfo() {
 
                     <div className="github-info__social-list">
                         <div className="github-info__social-item">
-                            <p className="github-info__social-value">{userInfo.followers}</p>
+                            <p className="github-info__social-value">
+                                {userInfo.followers ?? 0}
+                            </p>
                             <p className="github-info__social-label">Followers</p>
                         </div>
 
                         <div className="github-info__social-item">
-                            <p className="github-info__social-value">{userInfo.following}</p>
+                            <p className="github-info__social-value">
+                                {userInfo.following ?? 0}
+                            </p>
                             <p className="github-info__social-label">Following</p>
                         </div>
                     </div>
@@ -141,17 +118,23 @@ function GitHubInfo() {
                         src={worldIcon}
                         alt="world icon"
                     />
-                    <p className="github-info__location-text">{userInfo.location}</p>
+                    <p className="github-info__location-text">
+                        {userInfo.location || "Sem localização"}
+                    </p>
                 </div>
 
                 <div className="github-info__card github-info__card--repos">
                     <p className="github-info__repos-label">Public Reps</p>
-                    <p className="github-info__repos-value">{userInfo.public_repos}</p>
+                    <p className="github-info__repos-value">
+                        {userInfo.public_repos ?? 0}
+                    </p>
                 </div>
             </div>
-            <button className="exit-git" onClick={removeAcess}>Sair da conta GitHub</button>
+            <button className="exit-git" onClick={removeAccess}>
+                Sair da conta GitHub
+            </button>
         </div>
-    )
+    );
 }
 
-export default GitHubInfo
+export default GitHubInfo;

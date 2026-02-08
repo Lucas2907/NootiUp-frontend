@@ -1,56 +1,53 @@
-// import { useEffect } from "react"
-// import { useNavigate, useSearchParams } from "react-router-dom"
-// const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
+import { useEffect } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
-// function GitHubAuthPage() {
-//     const navigate = useNavigate()
-//     const [searchParams] = useSearchParams()
+const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
 
-//     useEffect(() => {
-//         const handleAuth = async () => {
-//             const code = searchParams.get("code")
-//             if (!code) {
-//                 console.error("Sem code na URL")
-//                 navigate("/signin")
-//                 return
-//             }
+function GitHubAuthPage() {
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
-//             try {
-//                 const res = await fetch(`${BACK_END_URL}/login`, {
-//                     method: "POST",
-//                     headers: { "Content-Type": "application/json" },
-//                     body: JSON.stringify({ code })
-//                 });
+    useEffect(() => {
+        const handleAuth = async () => {
+            const code = searchParams.get("code");
+            if (!code) {
+                console.error("Sem code na URL");
+                navigate("/signin");
+                return;
+            }
 
-//                 if (!res.ok) {
-//                     throw new Error(`Erro HTTP: ${res.status}`);
-//                 }
+            try {
+                const res = await fetch(`${BACK_END_URL}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code }),
+                });
 
-//                 const user = await res.json()
-//                 localStorage.setItem("users", JSON.stringify(user))
+                if (!res.ok) {
+                    throw new Error(`Erro HTTP: ${res.status}`);
+                }
 
+                const user = await res.json();
+                localStorage.setItem("user", JSON.stringify(user));
+            } catch (error) {
+                console.error("Erro no login:", error);
+                navigate("/signin");
+                return;
+            }
 
-//             } catch (error) {
-//                 console.error("Erro no login:", error);
-//                 navigate("/signin")
-//             }
+            navigate("/github-info");
+        };
 
-//             navigate("/")
-//         }
+        handleAuth();
+    }, [navigate, searchParams]);
 
-//         handleAuth()
+    return (
+        <>
+            <div className="circle-preloader"></div>
+            <p className="github__text">Autenticação em andamento...</p>
+        </>
+    );
+}
 
-//     }, [navigate, searchParams])
+export default GitHubAuthPage;
 
-//     return (
-//         <>
-//             <div className="circle-preloader"></div>
-//             <p className="github__text">Autenticação em andamento...</p>
-//         </>
-//     )
-// }
-
-// export default GitHubAuthPage
-
-
-//AUTH OAUTH GITHUB BACKEND

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react"
 import CurrentUserContext from "../../contexts/userContext";
 import type { CurrentUserContextType } from "../../contexts/userContext";
 
-// import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage"(BACKEND)
+import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage"
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
     localStorage.setItem("currentUser", JSON.stringify(user));
   }, [user]);
 
-  
+
   return (
     <CurrentUserContext.Provider value={{
       ...user, setUser
@@ -44,7 +44,7 @@ function App() {
           <Route path="/my-progress" element={<MyProgress />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/github-info" element={<GitHubInfo />} />
-          {/* <Route path="/github-auth" element={<GitHubAuthPage />} /> */}
+          {<Route path="/github-auth" element={<GitHubAuthPage />} />}
         </Route>
       </Routes>
     </CurrentUserContext.Provider>
