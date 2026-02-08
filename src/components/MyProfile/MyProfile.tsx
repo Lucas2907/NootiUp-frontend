@@ -8,7 +8,7 @@ import { useCurrentUser } from "../../contexts/userContext"
 
 function MyProfile() {
 
-    const { username, profession } = useCurrentUser()
+    const { username, profession, email } = useCurrentUser()
     const [isPopupOpened, setIsPopupOpened] = useState(false)
 
     const openPopup = () => setIsPopupOpened(true)
@@ -40,7 +40,7 @@ function MyProfile() {
             </div>
             <div className="my-profile__email">
                 <p className="my-profile__email-name">EMAIL:</p>
-                <p className="my-profile__email-text"> lucas@gmail.com</p>
+                <p className="my-profile__email-text">{email}</p>
             </div>
             <p className="my-profile__text">Entrou em 18/01/2025</p>
             <Link to={"/signin"} className="app-link my-profile__exit-link my-profile__button my-profile__exit">Sair</Link >
