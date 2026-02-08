@@ -1,53 +1,101 @@
 import { Link, useNavigate } from "react-router-dom";
-import hidenPassword from "../../assets/images/password-hidden.svg"
-import visiblePassword from "../../assets/images/password-visible.svg"
+import hidenPassword from "../../assets/images/password-hidden.svg";
+import visiblePassword from "../../assets/images/password-visible.svg";
 import { useState } from "react";
-import { useForm, useWatch } from "react-hook-form"
-
-
+import { useForm, useWatch } from "react-hook-form";
+import { signup, signin } from "../../utils/AuthApi";
+import { useCurrentUser } from "../../contexts/userContext";
 
 type MainProps = {
-    route: "signin" | "signup"
-}
+    route: "signin" | "signup";
+};
 
 type FormValues = {
-    email: string
-    password: string
-    confirmPassword?: string
-}
+    email: string;
+    password: string;
+    confirmPassword?: string;
+};
+
+const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
 
 function Main({ route }: MainProps) {
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+        useState<boolean>(false);
+    const [formError, setFormError] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
-    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false)
+    const navigate = useNavigate();
+    const isSignin = route === "signin";
 
-    const navigate = useNavigate()
-
-    const isSignin = route === "signin"
+    const { setUser } = useCurrentUser();
 
     const form = useForm<FormValues>({
         defaultValues: {
             email: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
         },
         mode: "onChange",
-        reValidateMode: "onChange"
-    })
+        reValidateMode: "onChange",
+    });
 
-    const { register, handleSubmit, formState, control } = form
-    const { errors, isValid } = formState
+    const { register, handleSubmit, formState, control } = form;
+    const { errors, isValid } = formState;
 
-    const watchedPassword = useWatch({ control, name: "password" })
+    const watchedPassword = useWatch({ control, name: "password" });
 
-    const onSubmit = () => {
-        if (isSignin) {
-            navigate("/", { replace: true })
-        } else {
-            navigate("/signin")
-            form.reset()
+    const onSubmit = async (values: FormValues) => {
+        setFormError(null);
+        setIsSubmitting(true);
+
+        try {
+            const { email, password } = values;
+
+            if (isSignin) {
+                const { token } = await signin(email, password);
+
+                localStorage.setItem("token", token);
+
+                const meRes = await fetch(`${BACK_END_URL}/users/me`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (!meRes.ok) {
+                    throw new Error(`Erro ao buscar usuário: ${meRes.status}`);
+                }
+
+                const me = await meRes.json();
+
+                setUser((prev) => ({
+                    ...(prev || { username: "User", profession: "Not defined" }),
+                    username: me.name,
+                    email: me.email
+                }));
+
+                navigate("/", { replace: true });
+            } else {
+                await signup(email, password);
+                form.reset();
+                navigate("/signin");
+            }
+        } catch (err) {
+            const message =
+                err instanceof Error
+                    ? err.message
+                    : typeof err === "string"
+                        ? err
+                        : "Erro ao processar o formulário";
+
+            setFormError(message);
         }
-    }
+        finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const togglePasswordVisible = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -57,18 +105,35 @@ function Main({ route }: MainProps) {
         setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
     };
 
-
     return (
         <div className="main">
-            <h1 className="main__title">{isSignin ? "Welcome Back!" : "Welcome to NootUp!"}</h1>
+            <h1 className="main__title">
+                {isSignin ? "Welcome Back!" : "Welcome to NootUp!"}
+            </h1>
             <p className="main__description">
-                {isSignin ? "Aprender é revigorante e ter você conosco novamente nos revigora da mesma forma" : "Seja bem vindo ao NootUp, onde seu aprendizado não tem limites"}
+                {isSignin
+                    ? "Aprender é revigorante e ter você conosco novamente nos revigora da mesma forma"
+                    : "Seja bem vindo ao NootUp, onde seu aprendizado não tem limites"}
             </p>
-            <form className="main__form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form
+                className="main__form"
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+            >
                 <div className="main__form-inputs">
                     <div>
-                        <label className={`main__form-label ${errors.email?.message ? "main__form-label--error" : ""}`} htmlFor="email"> E-mail </label>
-                        <div className={`main__form-field main__form-password main__form-password-confirmation ${errors.email?.message ? "main__form-field--error" : ""}`}>
+                        <label
+                            className={`main__form-label ${errors.email?.message ? "main__form-label--error" : ""
+                                }`}
+                            htmlFor="email"
+                        >
+                            {" "}
+                            E-mail{" "}
+                        </label>
+                        <div
+                            className={`main__form-field main__form-password main__form-password-confirmation ${errors.email?.message ? "main__form-field--error" : ""
+                                }`}
+                        >
                             <input
                                 minLength={6}
                                 maxLength={40}
@@ -79,32 +144,45 @@ function Main({ route }: MainProps) {
                                 {...register("email", {
                                     required: {
                                         value: true,
-                                        message: "Insira um e-mail"
+                                        message: "Insira um e-mail",
                                     },
                                     minLength: {
                                         value: 6,
-                                        message: "Mínimo de 6 caracteres"
+                                        message: "Mínimo de 6 caracteres",
                                     },
                                     maxLength: {
                                         value: 40,
-                                        message: "Máximo de 40 caracteres"
+                                        message: "Máximo de 40 caracteres",
                                     },
                                     pattern: {
                                         value:
                                             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                        message: "E-mail inválido"
-                                    }
+                                        message: "E-mail inválido",
+                                    },
                                 })}
                             />
-
                         </div>
-                        <p className={`main__form-input-error ${errors.email?.message ? "main__form-input-error--visible" : ""}`}>{errors.email?.message}</p>
+                        <p
+                            className={`main__form-input-error ${errors.email?.message
+                                ? "main__form-input-error--visible"
+                                : ""
+                                }`}
+                        >
+                            {errors.email?.message}
+                        </p>
                     </div>
                     <div>
-                        <label className={`main__form-label ${errors.password?.message ? "main__form-label--error" : ""}`} htmlFor="Senha" >Senha</label>
-                        <div className={`main__form-field main__form-password main__form-password-confirmation ${errors.password?.message ? "main__form-field--error" : ""}`}>
-
-
+                        <label
+                            className={`main__form-label ${errors.password?.message ? "main__form-label--error" : ""
+                                }`}
+                            htmlFor="Senha"
+                        >
+                            Senha
+                        </label>
+                        <div
+                            className={`main__form-field main__form-password main__form-password-confirmation ${errors.password?.message ? "main__form-field--error" : ""
+                                }`}
+                        >
                             <input
                                 maxLength={30}
                                 minLength={6}
@@ -116,12 +194,12 @@ function Main({ route }: MainProps) {
                                     required: { value: true, message: "Insira uma senha" },
                                     minLength: {
                                         value: 6,
-                                        message: "Mínimo de 6 caracteres"
+                                        message: "Mínimo de 6 caracteres",
                                     },
                                     maxLength: {
                                         value: 30,
-                                        message: "Máximo de 30 caracteres"
-                                    }
+                                        message: "Máximo de 30 caracteres",
+                                    },
                                 })}
                             />
 
@@ -135,18 +213,41 @@ function Main({ route }: MainProps) {
                                 <img
                                     className="main__form-icon"
                                     src={isPasswordVisible ? visiblePassword : hidenPassword}
-                                    alt={isPasswordVisible ? "visible password icon" : "hidde password icon"}
+                                    alt={
+                                        isPasswordVisible
+                                            ? "visible password icon"
+                                            : "hidde password icon"
+                                    }
                                     aria-hidden="true"
                                 />
                             </button>
                         </div>
-                        <p className={`main__form-input-error ${errors.password?.message ? "main__form-input-error--visible" : ""}`}>{errors.password?.message}</p>
+                        <p
+                            className={`main__form-input-error ${errors.password?.message
+                                ? "main__form-input-error--visible"
+                                : ""
+                                }`}
+                        >
+                            {errors.password?.message}
+                        </p>
                     </div>
                     {!isSignin && (
                         <div>
-                            <label className={`main__form-label ${errors.confirmPassword?.message ? "main__form-label--error" : ""}`} htmlFor="confirm-password">Confirmar Senha</label>
-                            <div className={`main__form-field main__form-password main__form-password-confirmation ${errors.confirmPassword?.message ? "main__form-field--error" : ""}`}>
-
+                            <label
+                                className={`main__form-label ${errors.confirmPassword?.message
+                                    ? "main__form-label--error"
+                                    : ""
+                                    }`}
+                                htmlFor="confirm-password"
+                            >
+                                Confirmar Senha
+                            </label>
+                            <div
+                                className={`main__form-field main__form-password main__form-password-confirmation ${errors.confirmPassword?.message
+                                    ? "main__form-field--error"
+                                    : ""
+                                    }`}
+                            >
                                 <input
                                     minLength={6}
                                     maxLength={30}
@@ -157,35 +258,73 @@ function Main({ route }: MainProps) {
                                     {...register("confirmPassword", {
                                         required: {
                                             value: true,
-                                            message: "Confirme sua senha"
+                                            message: "Confirme sua senha",
                                         },
                                         validate: (value) =>
-                                            value === watchedPassword || "As senhas não coincidem"
+                                            value === watchedPassword || "As senhas não coincidem",
                                     })}
                                 />
                                 <button
                                     type="button"
                                     className={`main__form-icon-button`}
                                     aria-pressed={isConfirmPasswordVisible}
-                                    aria-label={isConfirmPasswordVisible ? visiblePassword : hidenPassword}
+                                    aria-label={
+                                        isConfirmPasswordVisible ? visiblePassword : hidenPassword
+                                    }
                                     onClick={toggleConfirmPasswordVisible}
                                 >
                                     <img
                                         className="main__form-icon"
-                                        src={isConfirmPasswordVisible ? visiblePassword : hidenPassword}
-                                        alt={isConfirmPasswordVisible ? "visible password icon" : "hidde password icon"}
+                                        src={
+                                            isConfirmPasswordVisible
+                                                ? visiblePassword
+                                                : hidenPassword
+                                        }
+                                        alt={
+                                            isConfirmPasswordVisible
+                                                ? "visible password icon"
+                                                : "hidde password icon"
+                                        }
                                         aria-hidden="true"
                                     />
                                 </button>
                             </div>
-                            <p className={`main__form-input-error ${errors.confirmPassword?.message ? "main__form-input-error--visible" : ""}`}>{errors.confirmPassword?.message}</p>
+                            <p
+                                className={`main__form-input-error ${errors.confirmPassword?.message
+                                    ? "main__form-input-error--visible"
+                                    : ""
+                                    }`}
+                            >
+                                {errors.confirmPassword?.message}
+                            </p>
                         </div>
                     )}
                     {isSignin && (
-                        <p className="main__form-link-password">Esqueceu da senha?</p>)}
-                    <button type="submit" disabled={!isValid} className={`main__form-submit ${!isValid ? "main__form-submit--disabled" : ""}`} >{isSignin ? "Login" : "Register"}</button>
+                        <p className="main__form-link-password">Esqueceu da senha?</p>
+                    )}
+
+                    {formError && (
+                        <p className="main__form-input-error main__form-input-error--visible">
+                            {formError}
+                        </p>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={!isValid || isSubmitting}
+                        className={`main__form-submit ${!isValid || isSubmitting ? "main__form-submit--disabled" : ""
+                            }`}
+                    >
+                        {isSignin
+                            ? isSubmitting
+                                ? "Entrando..."
+                                : "Login"
+                            : isSubmitting
+                                ? "Registrando..."
+                                : "Register"}
+                    </button>
                 </div>
-            </form >
+            </form>
             <p className="main__link">
                 {isSignin ? (
                     <Link className="app-link" to={"/signup"}>
@@ -199,7 +338,7 @@ function Main({ route }: MainProps) {
                     </Link>
                 )}
             </p>
-        </div >
+        </div>
     );
 }
 

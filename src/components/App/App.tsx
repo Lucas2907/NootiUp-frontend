@@ -1,27 +1,28 @@
-import Main from "../Main/Main"
-import { Routes, Route } from "react-router-dom"
-import MainPage from "../MainPage/MainPage"
-import MyProgress from "../MyProgress/MyProgress"
-import Layout from "../Layout/Layout"
-import MyProfile from "../MyProfile/MyProfile"
-import Preloader from "../Preloader/Preloader"
-import GitHubInfo from "../GitHubInfo/GitHubInfo"
-import { useState, useEffect } from "react"
-import CurrentUserContext from "../../contexts/userContext";
-import type { CurrentUserContextType } from "../../contexts/userContext";
-
-import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage"
+import Main from "../Main/Main";
+import { Routes, Route } from "react-router-dom";
+import MainPage from "../MainPage/MainPage";
+import MyProgress from "../MyProgress/MyProgress";
+import Layout from "../Layout/Layout";
+import MyProfile from "../MyProfile/MyProfile";
+import Preloader from "../Preloader/Preloader";
+import GitHubInfo from "../GitHubInfo/GitHubInfo";
+import { useState, useEffect } from "react";
+import CurrentUserContext, {
+  type CurrentUserState,
+  type CurrentUserContextType,
+} from "../../contexts/userContext";
+import GitHubAuthPage from "../GitHubAuthPage/GitHubAuthPage";
 
 function App() {
-
-  const [user, setUser] = useState<CurrentUserContextType>(() => {
+  const [user, setUser] = useState<CurrentUserState>(() => {
     const saved = localStorage.getItem("currentUser");
     if (saved) {
-      return JSON.parse(saved) as CurrentUserContextType;
+      return JSON.parse(saved) as CurrentUserState;
     }
     return {
       username: "User",
       profession: "Not defined",
+      email: ""
     };
   });
 
@@ -29,12 +30,13 @@ function App() {
     localStorage.setItem("currentUser", JSON.stringify(user));
   }, [user]);
 
+  const contextValue: CurrentUserContextType = {
+    ...user,
+    setUser,
+  };
 
   return (
-    <CurrentUserContext.Provider value={{
-      ...user, setUser
-    }}>
-
+    <CurrentUserContext.Provider value={contextValue}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/preloader" element={<Preloader />} />
@@ -44,11 +46,11 @@ function App() {
           <Route path="/my-progress" element={<MyProgress />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/github-info" element={<GitHubInfo />} />
-          {<Route path="/github-auth" element={<GitHubAuthPage />} />}
+          <Route path="/github-auth" element={<GitHubAuthPage />} />
         </Route>
       </Routes>
     </CurrentUserContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;

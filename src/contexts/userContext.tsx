@@ -1,23 +1,25 @@
 import { createContext, useContext } from "react";
 
-export interface CurrentUserContextType {
-    username: string,
-    profession: string
-    setUser?: React.Dispatch<React.SetStateAction<CurrentUserContextType>>;
+export interface CurrentUserState {
+    username: string;
+    profession: string;
+    email: string;
 }
 
-const CurrentUserContext = createContext<CurrentUserContextType | null>(null)
+export interface CurrentUserContextType extends CurrentUserState {
+    setUser: React.Dispatch<React.SetStateAction<CurrentUserState>>;
+}
 
-const useCurrentUser = () => {
-    const currentUserContext = useContext(CurrentUserContext)
+const CurrentUserContext = createContext<CurrentUserContextType | null>(null);
+
+export const useCurrentUser = () => {
+    const currentUserContext = useContext(CurrentUserContext);
     if (!currentUserContext) {
-        throw new Error("useCurrentUser has to be used within <CurrentUserContext.Provider>"
+        throw new Error(
+            "useCurrentUser has to be used within <CurrentUserContext.Provider>"
         );
     }
+    return currentUserContext;
+};
 
-    return currentUserContext
-}
-
-export { useCurrentUser };
-
-export default CurrentUserContext
+export default CurrentUserContext;
