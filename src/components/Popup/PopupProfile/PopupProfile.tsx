@@ -43,10 +43,9 @@ function PopupProfile({ onClose }: PopupProfileProps) {
             setSubmitError(null);
             setIsSubmitting(true);
 
-            // Atualiza no back-end
+
             const updated = await updateProfile(data.username, data.profession);
 
-            // Sincroniza contexto com o que veio do servidor
             setUser(prev => ({
                 ...(prev || {
                     username: "User",
@@ -110,8 +109,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
                     </div>
                     <p
                         className={`popup-profile__error ${errors.username?.message
-                                ? "popup-profile__error-input--visible"
-                                : "popup-profile__error-input"
+                            ? "popup-profile__error-input--visible"
+                            : "popup-profile__error-input"
                             }`}
                     >
                         {errors.username?.message}
@@ -152,8 +151,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
                     </div>
                     <p
                         className={`popup-profile__error ${errors.profession?.message
-                                ? "popup-profile__error-input--visible"
-                                : "popup-profile__error-input"
+                            ? "popup-profile__error-input--visible"
+                            : "popup-profile__error-input"
                             }`}
                     >
                         {errors.profession?.message}
@@ -177,8 +176,8 @@ function PopupProfile({ onClose }: PopupProfileProps) {
                     </button>
                     <p
                         className={`popup-profile__error ${hasChanges
-                                ? "popup-profile__error-submit"
-                                : "popup-profile__error-submit--visible"
+                            ? "popup-profile__error-submit"
+                            : "popup-profile__error-submit--visible"
                             }`}
                     >
                         Mude alguma informação
