@@ -20,8 +20,7 @@ const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
 
 function Main({ route }: MainProps) {
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
-        useState<boolean>(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
     const [formError, setFormError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -71,8 +70,9 @@ function Main({ route }: MainProps) {
                 const me = await meRes.json();
 
                 setUser((prev) => ({
-                    ...(prev || { username: "User", profession: "Not defined" }),
+                    ...(prev || { username: "User", profession: "Not defined", emai: "Not Defined" }),
                     username: me.name,
+                    profession: me.profession,
                     email: me.email
                 }));
 
