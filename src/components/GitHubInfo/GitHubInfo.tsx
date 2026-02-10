@@ -2,47 +2,82 @@ import socialIcon from "../../assets/images/social.png";
 import worldIcon from "../../assets/images/world.png";
 import { useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
-import ButtonGitHub from "../ButtonGitHub/ButtonGitHub"
+import ButtonGitHub from "../ButtonGitHub/ButtonGitHub";
 
 interface UserInfo {
-    avatar_url?: string;
-    name?: string;
-    bio?: string;
-    followers?: number;
-    following?: number;
-    location?: string;
-    public_repos?: number;
-    [key: string]: unknown;
-} 
+    githubLogin: string;
+    githubName: string;
+    avatarUrl: string;
+    bio: string;
+    location: string;
+    followers: number;
+    following: number;
+    publicRepos: number;
+}
+
+const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
 
 function GitHubInfo() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        if (!savedUser) {
-            setUserInfo(null);
-            setIsLoading(false);
-            return;
-        }
+        const connectGitHub = async () => {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const code = params.get("code");
 
-        try {
-            const parsed = JSON.parse(savedUser);
-            if (parsed && parsed.id) {
-                setUserInfo(parsed);
-            } else {
-                setUserInfo(null);
+                if (code) {
+                    window.history.replaceState({}, "", "/github-info");
+
+                    const token = localStorage.getItem("token");
+                    if (!token) {
+                        setError("Você precisa estar logado no NootiUp");
+                        setIsLoading(false);
+                        return;
+                    }
+
+                    const res = await fetch(`${BACK_END_URL}/github/login`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({ code }),
+                    });
+
+                    if (!res.ok) {
+                        throw new Error(`Erro ao conectar GitHub: ${res.status}`);
+                    }
+
+                    const profile = await res.json();
+
+                    localStorage.setItem("githubUser", JSON.stringify(profile));
+                    setUserInfo(profile);
+                    setIsLoading(false);
+                    return;
+                }
+
+                const savedUser = localStorage.getItem("githubUser");
+                if (savedUser) {
+                    const parsed = JSON.parse(savedUser);
+                    setUserInfo(parsed);
+                }
+            } catch (err) {
+                const message =
+                    err instanceof Error ? err.message : "Erro ao conectar GitHub";
+                setError(message);
+            } finally {
+                setIsLoading(false);
             }
-        } catch {
-            setUserInfo(null);
-        } finally {
-            setIsLoading(false);
-        }
+        };
+
+        connectGitHub();
     }, []);
 
     function removeAccess() {
-        localStorage.removeItem("user");
+        localStorage.removeItem("githubUser");
         setUserInfo(null);
         window.location.reload();
     }
@@ -51,15 +86,22 @@ function GitHubInfo() {
         return <Preloader />;
     }
 
+    if (error) {
+        return (
+            <div className="github-container">
+                <h2 className="github-container__text">Erro ao conectar</h2>
+                <p className="github-container__form-text">{error}</p>
+                <ButtonGitHub />
+            </div>
+        );
+    }
+
     if (!userInfo) {
         return (
             <div className="github-container">
                 <h2 className="github-container__text">
                     Conecte sua conta GitHub para exibir suas informações
                 </h2>
-                <p className="github-container__form-text">
-                    Use o botão &quot;Login com GitHub&quot; para conectar sua conta.
-                </p>
                 <ButtonGitHub />
             </div>
         );
@@ -76,12 +118,12 @@ function GitHubInfo() {
                     </div>
 
                     <img
-                        src={userInfo.avatar_url}
+                        src={userInfo.avatarUrl}
                         alt="avatar user info"
                         className="github-info__basic-profile-image"
                     />
                     <h3 className="github-info__basic-username">
-                        {userInfo.name || "Sem nome"}
+                        {userInfo.githubName || "Sem nome"}
                     </h3>
                     <p className="github-info__basic-biography">
                         {userInfo.bio || "Sem bio"}
@@ -126,7 +168,7 @@ function GitHubInfo() {
                 <div className="github-info__card github-info__card--repos">
                     <p className="github-info__repos-label">Public Reps</p>
                     <p className="github-info__repos-value">
-                        {userInfo.public_repos ?? 0}
+                        {userInfo.publicRepos ?? 0}
                     </p>
                 </div>
             </div>

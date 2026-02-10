@@ -1,5 +1,5 @@
-import { useEffect } from "react"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const BACK_END_URL = import.meta.env.VITE_BACK_END_URL;
 
@@ -17,9 +17,19 @@ function GitHubAuthPage() {
             }
 
             try {
-                const res = await fetch(`${BACK_END_URL}/login`, {
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    console.error("Usuário não logado no NootiUp");
+                    navigate("/signin");
+                    return;
+                }
+
+                const res = await fetch(`${BACK_END_URL}/github/login`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
                     body: JSON.stringify({ code }),
                 });
 
@@ -27,15 +37,14 @@ function GitHubAuthPage() {
                     throw new Error(`Erro HTTP: ${res.status}`);
                 }
 
-                const user = await res.json();
-                localStorage.setItem("user", JSON.stringify(user));
+                const profile = await res.json();
+                localStorage.setItem("githubUser", JSON.stringify(profile));
+
+                navigate("/github-info");
             } catch (error) {
                 console.error("Erro no login:", error);
                 navigate("/signin");
-                return;
             }
-
-            navigate("/github-info");
         };
 
         handleAuth();
@@ -50,4 +59,3 @@ function GitHubAuthPage() {
 }
 
 export default GitHubAuthPage;
-
